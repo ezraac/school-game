@@ -1,4 +1,59 @@
+/*************************************************************
+  Written by ????, Term 1 2021
+  Style a basic W3.CSS interface.
+    v1 Basic layout of landing & game pages.
+*************************************************************/
 html, body {
-  height: 100%;
-  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  font-family: tahoma;
+  color: black;
 }
+
+
+
+canvas {
+  display: block;
+}
+
+#landingPage {
+	display: block;
+	height: 100vh;
+}
+
+#gamePage {
+	display: none;
+	height: 100vh;
+}
+
+#helloHeader {
+	height: 15vh;
+}
+
+#oneThird {
+	height: 80vh;
+  border-radius: 30px;
+}
+
+#twoThird {
+	height: 80vh;
+}
+
+#gameonethird {
+	height: 80vh;
+  border-radius: 20px;
+}
+
+#gametwothird {
+	height: 80vh;
+  border-radius: 20px;
+}
+
+#gametwothird2 {
+  height: 70vh;
+  width: 60vw;
+  margin: 37px;
+}
+/*************************************************************
+/*    END OF CSS
+*************************************************************/
