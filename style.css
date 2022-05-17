@@ -10,7 +10,9 @@ html, body {
   color: black;
 }
 
-
+p {
+  color: white;
+}
 
 canvas {
   display: block;
@@ -30,6 +32,11 @@ canvas {
 	height: 15vh;
 }
 
+#gameStartButton {
+  background-color: lime;
+  color: white;
+}
+
 #oneThird {
 	height: 80vh;
   border-radius: 30px;
@@ -42,17 +49,25 @@ canvas {
 #gameonethird {
 	height: 80vh;
   border-radius: 20px;
+  background-color: rgb(51, 51, 51);
 }
+
 
 #gametwothird {
 	height: 80vh;
   border-radius: 20px;
+  position: relative;
+  background-color: rgb(51, 51, 51);
 }
 
 #gametwothird2 {
   height: 70vh;
   width: 60vw;
-  margin: 37px;
+  position: absolute;
+  left:50%;
+  top:50%;
+
+  transform: translate(-50%,-50%);
 }
 /*************************************************************
 /*    END OF CSS

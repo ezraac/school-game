@@ -3,16 +3,19 @@
   Program for popBall game.
 *****************************************************/
 var time = 0;
+var hitscore = 0;
 var buttonfunc = "start";
-const DIA = 24;
+const DIA = 50;
 const BALLSPEED = [5, 4, 3, 2, -2, -3, -4, -5];
 var ballarray = [];
 var started = false;
 var interval;
 
 function setup() {
-	cnv = createCanvas(600, 600);
-	cnv.parent("gametwothird");
+	var element = document.getElementById("gametwothird2")
+	cnv = createCanvas(element.offsetWidth, element.offsetHeight);
+	cnv.parent("gametwothird2");
+	cnv.position(element.offsetLeft, element.offsetTop);
 }
 
 /*****************************************************/
@@ -32,7 +35,7 @@ function enterGame() {
 	document.getElementById('landingPage').style.display = "none";
 	document.getElementById('gamePage').style.display = "block";
 
-	var element = document.getElementById("gametwothird");
+	var element = document.getElementById("gametwothird2");
 	resizeCanvas(element.offsetWidth, element.offsetHeight);
 }
 
@@ -50,7 +53,7 @@ function gameStart() {
 		console.log("started");
 		if (buttonfunc == "start") {
 			document.getElementById("gameStartButton").style.backgroundColor = "red";
-			document.getElementById("gameStartButton").innerHTML = "stop";
+			document.getElementById("gameStartButton").innerHTML = "STOP";
 			buttonfunc = "stop";
 			balls();
 			interval = setInterval(nextSecond, 1000);
@@ -75,7 +78,8 @@ function mouseClicked() {
 		var px2ball = dist(ballarray[i].x, 
 			ballarray[i].y, mouseX, mouseY);
 		if (px2ball <= DIA/2) {
-			hitscore += 1;
+			hitscore += 1
+			document.getElementById("hitscore").innerHTML = "hits: " + hitscore
       console.log("mouseClicked: hit ball " + i);
       ballarray.splice(i, 1);
 		}
@@ -87,6 +91,7 @@ function nextSecond() {
 }
 
 function balls() {
+	console.log("balls")
 	for (var i = 0; i < 10; i++) {
 		ballarray[i] = {
 			x: random(230, 270),
@@ -95,7 +100,7 @@ function balls() {
 			yspeed: random(BALLSPEED),
 			
 			display: function() {
-				stroke(255, 255, 255);
+				stroke(255);
 				noFill();
 				ellipse(this.x, this.y, DIA);
 			},

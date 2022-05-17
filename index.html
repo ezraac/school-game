@@ -33,11 +33,11 @@
 <!--***************************************************
 //  BODY
 ****************************************************-->
-<body class="w3-yellow">
+<body>
   <!--***************************************************
   //  landingPage
   ****************************************************-->
-  <section id="landingPage" class="w3-brown">
+  <section id="landingPage">
 	  <div class="w3-container">
 		  <h1 class="w3-wide" id="helloHeader">hello</h1>
 		  <div class="w3-container w3-blue w3-third" id="oneThird">
@@ -54,15 +54,17 @@
 		<div class="w3-container">
 			<h1 class="w3-wide">game page</h1>
 			<p>text goes here</p>
-			<div class="w3-container w3-blue w3-third" id="gameonethird">
-				<button class="w3-button w3-border w3-xlarge" onclick="gameStart()" id="gameStartButton" style="backgroundColor: lime;">START</button>
-				<p>level: 1</p>
-				<p id=gameTimer>time: 0s</p>
-				<p>hits: 1</p>
-				<p>misses: 1</p>
+			<div class="w3-container w3-third" id="gameonethird">
+        <div class="w3-container w3-third" id="gameonethird2">
+          <button class="w3-button w3-border w3-xlarge" onclick="gameStart()" id="gameStartButton">START</button>
+          <p>level: 1</p>
+          <p id=gameTimer>time: 0s</p>
+          <p id="hitscore">hits: 0</p>
+          <p>misses: 1</p>
+        </div>
 			</div>
-			<div class="w3-container w3-red w3-twothird" id="gametwothird">
-        <div class="w3-container w3-pink w3-twothird" id="gametwothird2"></div>
+			<div class="w3-container w3-twothird" id="gametwothird">
+        <div class="w3-container w3-twothird" id="gametwothird2"></div>
       </div>
 			
 	</section>
