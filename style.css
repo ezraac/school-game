@@ -32,30 +32,25 @@ canvas {
 	height: 15vh;
 }
 
-#gameStartButton {
-  background-color: lime;
-  color: white;
-}
-
 #oneThird {
 	height: 80vh;
-  border-radius: 30px;
+  border-radius: 20px;
 }
 
 #twoThird {
 	height: 80vh;
 }
 
+/*landing page css*/
 #gameonethird {
 	height: 80vh;
-  border-radius: 20px;
+  border-radius: 20px 0px 0px 20px;
   background-color: rgb(51, 51, 51);
 }
 
-
 #gametwothird {
 	height: 80vh;
-  border-radius: 20px;
+  border-radius: 0px 20px 20px 0px;
   position: relative;
   background-color: rgb(51, 51, 51);
 }
@@ -68,6 +63,28 @@ canvas {
   top:50%;
 
   transform: translate(-50%,-50%);
+}
+
+/*text div css*/
+#textdiv {
+  background-color: rgb(92, 92, 92);
+  border-radius: 20px;
+  font-size: larger;
+  width: 30vw;
+  height: 65vh;
+}
+
+#timediv {
+  background-color: rgb(24, 230, 72);
+  border-radius: 20px;
+  width: 10vw;
+}
+
+#gameStartButton {
+  margin-top: 20px;
+  background-color: rgb(24, 230, 72);
+  color: white;
+  border-radius: 20px;
 }
 /*************************************************************
 /*    END OF CSS

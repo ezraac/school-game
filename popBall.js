@@ -23,7 +23,7 @@ function setup() {
 /*****************************************************/
 function draw() {
 	background(0);
-	document.getElementById("gameTimer").innerHTML = "time: " + time + "s";
+	document.getElementById("gameTimer").innerHTML = "Time: " + time + "s";
 	for (var i = 0; i < ballarray.length; i++) {
 		ballarray[i].display();
 		ballarray[i].move();
@@ -61,8 +61,8 @@ function gameStart() {
 	} else {
 		started = false;
 		if (buttonfunc == "stop") {
-			document.getElementById("gameStartButton").style.backgroundColor = "green";
-			document.getElementById("gameStartButton").innerHTML = "start";
+			document.getElementById("gameStartButton").style.backgroundColor = "rgb(24, 230, 72)";
+			document.getElementById("gameStartButton").innerHTML = "START";
 			buttonfunc = "start";
 			ballarray.splice(0, ballarray.length);
 			started = false;
@@ -79,7 +79,7 @@ function mouseClicked() {
 			ballarray[i].y, mouseX, mouseY);
 		if (px2ball <= DIA/2) {
 			hitscore += 1
-			document.getElementById("hitscore").innerHTML = "hits: " + hitscore
+			document.getElementById("hitscore").innerHTML = "Score: " + hitscore
       console.log("mouseClicked: hit ball " + i);
       ballarray.splice(i, 1);
 		}
