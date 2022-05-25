@@ -25,7 +25,9 @@
   <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script> 
   <!-- firebase end ********************************-->
 
-  <script defer src="firebase.js"></script>
+  <script defer src="game_manager.js"></script>
+  <script defer src="modules\enum.js"></script>
+  <script defer src="modules\firebase.js"></script>
   <script defer src="call.js"></script>
   <script defer src="popBall.js"></script>
 </head>
@@ -34,14 +36,6 @@
 //  BODY
 ****************************************************-->
 <body>
-
-  <div id="demo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-animate-right">
-		<button onclick="mobilething()" class="w3-bar-item w3-button w3-large w3-hide-large w3-animate-right">Close ×</button>
-		<!-- calls a function that is in script.js-->
-  	<a class="w3-bar-item w3-button w3-border" href="">Home</a>
-  	<a class="w3-bar-item w3-button w3-border" href="">Pop the ball</a>
-  	<a class="w3-bar-item w3-button w3-border" href="">Chess</a>
-	</div>
   <!--***************************************************
   //  landingPage
   ****************************************************-->
@@ -49,7 +43,8 @@
 	  <div class="w3-container">
 		  <h1 class="w3-wide" id="helloHeader">hello</h1>
 		  <div class="w3-container w3-third" id="oneThird">
-			  <button class="w3-button w3-border w3-xlarge" onclick="enterGame()">ENTER</button>
+			  <button class="w3-button w3-border w3-xlarge" onclick="enterGamePB()">Pop Ball Game</button>
+        <button class="w3-button w3-border w3-xlarge" onclick="enterGameTTT()">Tic Tac Toe</button>
 		  </div>
 		  <div class="w3-container w3-twothird" id="twoThird"></div>
 	  </div>
@@ -60,11 +55,11 @@
   ****************************************************-->
 	<section id="gamePage">
 		<div class="w3-container">
-			<h1 class="w3-wide">game page</h1>
+			<h1 class="w3-wide">Pop the Ball</h1>
 			<p>text goes here</p>
 			<div class="w3-container w3-third" id="gameonethird">
         <h1 id="hellouser" style="text-align: center;">Hello Tommy</h1>
-        <div class="w3-container w3-third" id="gameOneThird2"> <!--doesn't work if remove id-->
+        <div class="w3-container w3-third">
           <div class="w3-container" id="textdiv">
             <p id="hitscore">Score: 0</p>
             <p id="highscore">Highscore: 0</p>

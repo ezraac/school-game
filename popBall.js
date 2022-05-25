@@ -8,8 +8,8 @@ var buttonfunc = "start";
 const DIA = 50;
 const BALLSPEED = [5, 4, 3, 2, -2, -3, -4, -5];
 var ballarray = [];
-var started = false;
 var interval;
+var started = false;
 
 function setup() {
 	var element = document.getElementById("gametwothird2")
@@ -18,58 +18,16 @@ function setup() {
 	cnv.position(element.offsetLeft, element.offsetTop);
 }
 
-/*****************************************************/
-// draw()
-/*****************************************************/
-function draw() {
-	background(0);
-	document.getElementById("gameTimer").innerHTML = "Time: " + time + "s";
-	for (var i = 0; i < ballarray.length; i++) {
-		ballarray[i].display();
-		ballarray[i].move();
-		ballarray[i].bounce();
-	}
-}
 
-function enterGame() {
-	document.getElementById('landingPage').style.display = "none";
-	document.getElementById('gamePage').style.display = "block";
-
-	var element = document.getElementById("gametwothird2");
-	resizeCanvas(element.offsetWidth, element.offsetHeight);
-}
 
 /* function for the start button
-
 when the start button is clicked, the elements will be changed to a stop button and the variable
 buttonfunc will get changed to stop so repeated actions of clicking the button won't break the button. the
 function "balls" will then be called to start the game.*/
 
 /* when the stop button/when the button func is stop when the player clicks the button, the game will be stopped by splicing all the objects out of the array. the button is changed back to start and the buttonfun will be changed back to start. */
-function gameStart() {
-	if (started == false) {
-		started = true;
-		time = 0;
-		console.log("started");
-		if (buttonfunc == "start") {
-			document.getElementById("gameStartButton").style.backgroundColor = "red";
-			document.getElementById("gameStartButton").innerHTML = "STOP";
-			buttonfunc = "stop";
-			balls();
-			interval = setInterval(nextSecond, 1000);
-		}
-	} else {
-		started = false;
-		if (buttonfunc == "stop") {
-			document.getElementById("gameStartButton").style.backgroundColor = "rgb(24, 230, 72)";
-			document.getElementById("gameStartButton").innerHTML = "START";
-			buttonfunc = "start";
-			ballarray.splice(0, ballarray.length);
-			started = false;
-			clearInterval(interval);
-		}
-	}
-}
+
+
 
 /* default function for mouse clicked. except i've added my own code so that when the mouse is clicked, it will check if the player clicked the ball */
 function mouseClicked() {
