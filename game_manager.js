@@ -7,7 +7,7 @@ function enterGamePB() {
 	document.getElementById('landingPage').style.display = "none";
 	document.getElementById('gamePage').style.display = "block";
 
-	var element = document.getElementById("gametwothird2");
+	let element = document.getElementById("gametwothird2");
 	resizeCanvas(element.offsetWidth, element.offsetHeight);
     whatGame = "popBall"
 }
@@ -16,13 +16,13 @@ function enterGameTTT() {
 	document.getElementById('landingPage').style.display = "none";
 	document.getElementById('gamePage').style.display = "block";
 
-	var element = document.getElementById("gametwothird2");
+	let element = document.getElementById("gametwothird2");
 	resizeCanvas(element.offsetWidth, element.offsetHeight);
     whatGame = "ticTacToe"
 }
 
 function setup() {
-	var element = document.getElementById("gametwothird2")
+	let element = document.getElementById("gametwothird2")
 	cnv = createCanvas(element.offsetWidth, element.offsetHeight);
 	cnv.parent("gametwothird2");
 	cnv.position(element.offsetLeft, element.offsetTop);
@@ -33,6 +33,7 @@ function draw() {
         background(0);
         document.getElementById("gameTimer").innerHTML = "Time: " + time + "s";
         for (var i = 0; i < ballarray.length; i++) {
+			//ball functions
             ballarray[i].display();
             ballarray[i].move();
             ballarray[i].bounce();
@@ -50,14 +51,13 @@ function gameStart() {
 	if (started == false) {
 		started = true
 		time = 0
-		console.log("started");
 		if (buttonfunc == "start") {
                 if (whatGame == "popBall") {
                 document.getElementById("gameStartButton").style.backgroundColor = "red"
                 document.getElementById("gameStartButton").innerHTML = "STOP"
-                buttonfunc = "stop"
-                balls()
-                interval = setInterval(nextSecond, 1000);
+                buttonfunc = "stop";
+                balls() //creates balls
+                interval = setInterval(nextSecond, 1000); //timer
             }
 		}
 	} else {
@@ -65,12 +65,17 @@ function gameStart() {
 		if (buttonfunc == "stop") {
 			document.getElementById("gameStartButton").style.backgroundColor = "rgb(24, 230, 72)"
 			document.getElementById("gameStartButton").innerHTML = "START"
-			buttonfunc = "start"
+			buttonfunc = "start";
             if (whatGame == "popBall") {
-                ballarray.splice(0, ballarray.length)
+                ballarray.splice(0, ballarray.length) //removes all balls in object
                 started = false
-                clearInterval(interval)
+                clearInterval(interval) //stop timer
             }
 		}
 	}
+}
+
+//next second - called by interval
+function nextSecond() {
+	time++;
 }

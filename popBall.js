@@ -12,59 +12,52 @@ var interval;
 var started = false;
 
 function setup() {
-	var element = document.getElementById("gametwothird2")
+	let element = document.getElementById("gametwothird2")
 	cnv = createCanvas(element.offsetWidth, element.offsetHeight);
 	cnv.parent("gametwothird2");
 	cnv.position(element.offsetLeft, element.offsetTop);
 }
 
+/*
+mouseclicked()
+already a default function, only i've added my own set of code to make it work with my game.
 
-
-/* function for the start button
-when the start button is clicked, the elements will be changed to a stop button and the variable
-buttonfunc will get changed to stop so repeated actions of clicking the button won't break the button. the
-function "balls" will then be called to start the game.*/
-
-/* when the stop button/when the button func is stop when the player clicks the button, the game will be stopped by splicing all the objects out of the array. the button is changed back to start and the buttonfun will be changed back to start. */
-
-
-
-/* default function for mouse clicked. except i've added my own code so that when the mouse is clicked, it will check if the player clicked the ball */
+*/
 function mouseClicked() {
   console.log("mouseClicked");
 	for (var i = 0; i < ballarray.length; i++) {
 		var px2ball = dist(ballarray[i].x, 
-			ballarray[i].y, mouseX, mouseY);
-		if (px2ball <= DIA/2) {
+			ballarray[i].y, mouseX, mouseY); //iterates through all the circles and finds the distance between the current circle-
+		if (px2ball <= DIA/2) {				 //
 			hitscore += 1
 			document.getElementById("hitscore").innerHTML = "Score: " + hitscore
-      console.log("mouseClicked: hit ball " + i);
-      ballarray.splice(i, 1);
+			console.log("mouseClicked: hit ball " + i);
+			ballarray.splice(i, 1); //simple way to remove object in array
+			if (ballarray.length == 0) {
+				clearInterval(interval)
+			}
 		}
 	}
 }
 
-function nextSecond() {
-	time++;
-}
-
 function balls() {
 	console.log("balls")
-	for (var i = 0; i < 10; i++) {
+	for (var i = 0; i < 10; i++) { //10 balls
 		ballarray[i] = {
+			//positioning and speed set to random values
 			x: random(230, 270),
 			y: random(230, 270),
 			xspeed: random(BALLSPEED),
 			yspeed: random(BALLSPEED),
 			
-			display: function() {
+			display: function() { //creates the balls
 				stroke(255);
 				noFill();
 				ellipse(this.x, this.y, DIA);
 			},
 
-			bounce: function() {
-				if (this.x + DIA/2 > width) {
+			bounce: function() { //bounce function - reverses velocity if ball hits the edge
+				if (this.x + DIA/2 > width) { //x axis
 					this.xspeed = -this.xspeed
 					this.x = width-DIA/2;
 				} else if (this.x - DIA/2 < 0) {
@@ -72,7 +65,7 @@ function balls() {
 					this.x = 0+DIA/2;
 				}
 				
-				if (this.y + DIA/2 > height) {
+				if (this.y + DIA/2 > height) {//y axis
 					this.yspeed = -this.yspeed;
 					this.y = height-DIA/2;
 				} else if (this.y - DIA/2 < 0) {
@@ -81,7 +74,7 @@ function balls() {
 				}
 			},
 
-			move: function() {
+			move: function() { //moves the balls
 				this.x = this.x + this.xspeed;
 				this.y = this.y + this.yspeed;
 			}
