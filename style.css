@@ -32,30 +32,31 @@ canvas {
 	height: 15vh;
 }
 
-#oneThird {
+/*landing page css*/
+#lP_oneThird {
 	height: 80vh;
   border-radius: 20px;
 }
 
-#twoThird {
+#lP_twoThird {
 	height: 80vh;
 }
 
-/*landing page css*/
-#gameonethird {
+/*game page css*/
+#game_oneThird {
 	height: 80vh;
   border-radius: 20px 0px 0px 20px;
   background-color: rgb(51, 51, 51);
 }
 
-#gametwothird {
+#game_twoThird {
 	height: 80vh;
   border-radius: 0px 20px 20px 0px;
   position: relative;
   background-color: rgb(51, 51, 51);
 }
 
-#gametwothird2 {
+#game_canvasDiv {
   height: 70vh;
   width: 60vw;
   position: absolute;
@@ -66,7 +67,7 @@ canvas {
 }
 
 /*text div css*/
-#textdiv {
+#game_textDiv {
   background-color: rgb(92, 92, 92);
   border-radius: 20px;
   font-size: larger;
@@ -74,13 +75,13 @@ canvas {
   height: 65vh;
 }
 
-#timediv {
+#game_timeDiv {
   background-color: rgb(24, 230, 72);
   border-radius: 20px;
   width: 10vw;
 }
 
-#gameStartButton {
+#game_startButton {
   margin-top: 20px;
   background-color: rgb(24, 230, 72);
   color: white;

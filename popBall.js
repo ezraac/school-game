@@ -52,6 +52,35 @@ function balls() {
 	}
 }
 
+function pBMouseFunc() {
+	if (buttonfunc == "stop") {
+		ballhit = false;
+		for (var i = 0; i < ballarray.length; i++) { //iteration through balls
+			let px2ball = dist(ballarray[i].x, ballarray[i].y, mouseX, mouseY); //finds distance of ball x,y to mouse x,y
+			if (px2ball <= DIA/2) {	//iterates through all the circles and finds the distance between the current circle and mouse cursor
+				hitscore += 1;
+				ballhit = true;
+				document.getElementById("hitscore").innerHTML = "Score: " + hitscore;
+				console.log("mouseClicked: hit ball " + i);
+				ballarray.splice(i, 1); //simple way to remove object in array
+				if (ballarray.length == 0) {
+					clearInterval(interval); //stops timer
+					document.getElementById("gameStartButton").style.backgroundColor = "rgb(24, 230, 72)";
+					document.getElementById("gameStartButton").innerHTML = "START"; //changes button to start button
+					buttonfunc = "start";
+					misses = 0;
+				}
+			}
+		}
+		if (ballhit == false) {
+			misses += 1;
+			document.getElementById("misses").innerHTML = "Misses: " + misses;
+		} else {
+			ballhit = false;
+		}
+	}
+}
+
 /*****************************************************/
 //   END OF CODE
 /*****************************************************/

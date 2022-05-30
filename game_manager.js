@@ -2,7 +2,7 @@
 /*code to manage what game is shown in the p5 canvas*/
 /****************************************************/
 var whatGame;
-var interval;
+var pBInterval;
 var started = false;
 var hitscore = 0;
 var misses = 0;
@@ -15,7 +15,7 @@ function enterGame(chosenGame) {
 	document.getElementById('landingPage').style.display = "none";
 	document.getElementById('gamePage').style.display = "block";
 
-	let element = document.getElementById("gametwothird2");
+	let element = document.getElementById("game_canvasDiv");
 	resizeCanvas(element.offsetWidth, element.offsetHeight);
     whatGame = chosenGame;
 }
@@ -25,12 +25,12 @@ function enterGame(chosenGame) {
 
 /*
 default function called automatically by p5.js
-creates a canvas and sets the parent to div "gametwothird2" and positions it over that same div.
+creates a canvas and sets the parent to div "game_canvasDiv" and positions it over that same div.
 */
 function setup() {
-	let element = document.getElementById("gametwothird2")
+	let element = document.getElementById("game_canvasDiv")
 	cnv = createCanvas(element.offsetWidth, element.offsetHeight); //sets width and height to same as div
-	cnv.parent("gametwothird2");
+	cnv.parent("game_canvasDiv");
 	cnv.position(element.offsetLeft, element.offsetTop);
 }
 
@@ -60,32 +60,7 @@ code added for the popball game
 */
 function mousePressed() {
 	if (whatGame == "popBall") {
-		if (buttonfunc == "stop") {
-			ballhit = false;
-			for (var i = 0; i < ballarray.length; i++) { //iteration through balls
-				let px2ball = dist(ballarray[i].x, ballarray[i].y, mouseX, mouseY); //finds distance of ball x,y to mouse x,y
-				if (px2ball <= DIA/2) {	//iterates through all the circles and finds the distance between the current circle and mouse cursor
-					hitscore += 1;
-					ballhit = true;
-					document.getElementById("hitscore").innerHTML = "Score: " + hitscore;
-					console.log("mouseClicked: hit ball " + i);
-					ballarray.splice(i, 1); //simple way to remove object in array
-					if (ballarray.length == 0) {
-						clearInterval(interval); //stops timer
-						document.getElementById("gameStartButton").style.backgroundColor = "rgb(24, 230, 72)";
-						document.getElementById("gameStartButton").innerHTML = "START"; //changes button to start button
-						buttonfunc = "start";
-						misses = 0;
-					}
-				}
-			}
-			if (ballhit == false) {
-				misses += 1;
-				document.getElementById("misses").innerHTML = "Misses: " + misses;
-			} else {
-				ballhit = false;
-			}
-		}
+		pBMouseFunc();
 	}
 }
 
@@ -104,23 +79,23 @@ function gameStart() {
 		misses = 0;
 		if (buttonfunc == "start") {
                 if (whatGame == "popBall") {
-                document.getElementById("gameStartButton").style.backgroundColor = "red";
-                document.getElementById("gameStartButton").innerHTML = "STOP"; //changes button to stop button
+                document.getElementById("game_startButton").style.backgroundColor = "red";
+                document.getElementById("game_startButton").innerHTML = "STOP"; //changes button to stop button
                 buttonfunc = "stop";
                 balls() //creates balls
-                interval = setInterval(nextSecond, 1000); //starts timer
+                pBInterval = setInterval(nextSecond, 1000); //starts timer
             }
 		}
 	} else {
 		started = false
 		if (buttonfunc == "stop") {
-			document.getElementById("gameStartButton").style.backgroundColor = "rgb(24, 230, 72)";
-			document.getElementById("gameStartButton").innerHTML = "START"; //changes button to start button
+			document.getElementById("game_startButton").style.backgroundColor = "rgb(24, 230, 72)";
+			document.getElementById("game_startButton").innerHTML = "START"; //changes button to start button
 			buttonfunc = "start";
             if (whatGame == "popBall") {
                 ballarray.splice(0, ballarray.length); //removes all balls in object
                 started = false;
-                clearInterval(interval); //stop timer
+                clearInterval(pBInterval); //stop timer
             }
 		}
 	}
