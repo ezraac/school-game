@@ -43,8 +43,8 @@
 	  <div class="w3-container">
 		  <h1 class="w3-wide" id="helloHeader">hello</h1>
 		  <div class="w3-container w3-third" id="oneThird">
-			  <button class="w3-button w3-border w3-xlarge" onclick="enterGamePB()">Pop Ball Game</button>
-        <button class="w3-button w3-border w3-xlarge" onclick="enterGameTTT()">Tic Tac Toe</button>
+			  <button class="w3-button w3-border w3-xlarge" onclick="enterGame('popBall')">Pop Ball Game</button>
+        <button class="w3-button w3-border w3-xlarge" onclick="enterGame('TTT')">Tic Tac Toe</button>
 		  </div>
 		  <div class="w3-container w3-twothird" id="twoThird"></div>
 	  </div>
@@ -63,6 +63,7 @@
           <div class="w3-container" id="textdiv">
             <p id="hitscore">Score: 0</p>
             <p id="highscore">Highscore: 0</p>
+            <p id="misses">Misses: 0</p>
             <p id="username">Username: Tommy1</p>
             <div class="w3-container" id="timediv">
               <p id=gameTimer>Time: 0s</p>

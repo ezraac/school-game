@@ -3,42 +3,12 @@
   Program for popBall game.
 *****************************************************/
 var time = 0;
-var hitscore = 0;
 var buttonfunc = "start";
+
+//ball variables
 const DIA = 50;
-const BALLSPEED = [5, 4, 3, 2, -2, -3, -4, -5];
+const BALLSPEED = [5, 4, 3, 2, -2, -3, -4, -5]; //8 different velocities
 var ballarray = [];
-var interval;
-var started = false;
-
-function setup() {
-	let element = document.getElementById("gametwothird2")
-	cnv = createCanvas(element.offsetWidth, element.offsetHeight);
-	cnv.parent("gametwothird2");
-	cnv.position(element.offsetLeft, element.offsetTop);
-}
-
-/*
-mouseclicked()
-already a default function, only i've added my own set of code to make it work with my game.
-
-*/
-function mouseClicked() {
-  console.log("mouseClicked");
-	for (var i = 0; i < ballarray.length; i++) {
-		var px2ball = dist(ballarray[i].x, 
-			ballarray[i].y, mouseX, mouseY); //iterates through all the circles and finds the distance between the current circle-
-		if (px2ball <= DIA/2) {				 //
-			hitscore += 1
-			document.getElementById("hitscore").innerHTML = "Score: " + hitscore
-			console.log("mouseClicked: hit ball " + i);
-			ballarray.splice(i, 1); //simple way to remove object in array
-			if (ballarray.length == 0) {
-				clearInterval(interval)
-			}
-		}
-	}
-}
 
 function balls() {
 	console.log("balls")
@@ -58,15 +28,15 @@ function balls() {
 
 			bounce: function() { //bounce function - reverses velocity if ball hits the edge
 				if (this.x + DIA/2 > width) { //x axis
-					this.xspeed = -this.xspeed
-					this.x = width-DIA/2;
+					this.xspeed = -this.xspeed	//reverses speed
+					this.x = width-DIA/2; //adjusts ball so it won't cut outside of canvas before drawn.
 				} else if (this.x - DIA/2 < 0) {
 					this.xspeed = -this.xspeed;
 					this.x = 0+DIA/2;
 				}
 				
 				if (this.y + DIA/2 > height) {//y axis
-					this.yspeed = -this.yspeed;
+					this.yspeed = -this.yspeed; //refer to x axis
 					this.y = height-DIA/2;
 				} else if (this.y - DIA/2 < 0) {
 					this.yspeed = -this.yspeed;
