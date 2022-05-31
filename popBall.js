@@ -10,6 +10,12 @@ const DIA = 50;
 const BALLSPEED = [5, 4, 3, 2, -2, -3, -4, -5]; //8 different velocities
 var ballarray = [];
 
+//other variables - called in game_manager.js - only here for tidiness
+var hitscore = 0;
+var misses = 0;
+var ballhit;
+var misshit; //bool - changed to true/false when mouse is/isn't over canvas
+
 function balls() {
 	console.log("balls")
 	for (var i = 0; i < 10; i++) { //10 balls
@@ -80,7 +86,6 @@ function pBMouseFunc() {
 		}
 	}
 }
-
 /*****************************************************/
 //   END OF CODE
 /*****************************************************/

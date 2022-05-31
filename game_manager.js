@@ -2,11 +2,8 @@
 /*code to manage what game is shown in the p5 canvas*/
 /****************************************************/
 var whatGame;
-var pBInterval;
+var pBInterval; //asigned an interval
 var started = false;
-var hitscore = 0;
-var misses = 0;
-var ballhit;
 
 //functions when enetering a game
 
@@ -32,6 +29,7 @@ function setup() {
 	cnv = createCanvas(element.offsetWidth, element.offsetHeight); //sets width and height to same as div
 	cnv.parent("game_canvasDiv");
 	cnv.position(element.offsetLeft, element.offsetTop);
+	cnv.mousePressed(pBMouseFunc)
 }
 
 /*
@@ -44,6 +42,7 @@ function draw() {
     if (whatGame == "popBall") {
         background(0);
         document.getElementById("gameTimer").innerHTML = "Time: " + time + "s"; //timer text
+		document.getElementById("misses").innerHTML = "Misses: " + misses;
         for (var i = 0; i < ballarray.length; i++) {
 			//ball functions
             ballarray[i].display();
@@ -58,27 +57,20 @@ mousepressed()
 default function
 code added for the popball game
 */
-function mousePressed() {
-	if (whatGame == "popBall") {
-		pBMouseFunc();
-	}
-}
+/*
+function for the start button
+changes button function when clicked
 
-/* function for the start button
-when the start button is clicked, the elements will be changed to a stop button and the variable
-buttonfunc will get changed to stop so repeated actions of clicking the button with function 'start' won't break the button.
-the function "balls" will then be called to start the game.*/
-
-/* when the stop button/when the button func is stop when the player clicks the button,
-the game will be stopped by splicing all the objects out of the array.
-the button is changed back to start and the buttonfun will be changed back to start. */
+*/
 function gameStart() {
 	if (started == false) {
 		started = true;
 		time = 0;
 		misses = 0;
+		hitscore = 0;
+		document.getElementById("hitscore").innerHTML = "Score: 0"
 		if (buttonfunc == "start") {
-                if (whatGame == "popBall") {
+            if (whatGame == "popBall") {
                 document.getElementById("game_startButton").style.backgroundColor = "red";
                 document.getElementById("game_startButton").innerHTML = "STOP"; //changes button to stop button
                 buttonfunc = "stop";
@@ -105,4 +97,3 @@ function gameStart() {
 function nextSecond() {
 	time++;
 }
-
