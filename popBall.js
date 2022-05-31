@@ -70,7 +70,7 @@ function pBMouseFunc() {
 				console.log("mouseClicked: hit ball " + i);
 				ballarray.splice(i, 1); //simple way to remove object in array
 				if (ballarray.length == 0) {
-					clearInterval(interval); //stops timer
+					clearInterval(pBInterval); //stops timer
 					document.getElementById("gameStartButton").style.backgroundColor = "rgb(24, 230, 72)";
 					document.getElementById("gameStartButton").innerHTML = "START"; //changes button to start button
 					buttonfunc = "start";
