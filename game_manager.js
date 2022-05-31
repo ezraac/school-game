@@ -29,7 +29,7 @@ function setup() {
 	cnv = createCanvas(element.offsetWidth, element.offsetHeight); //sets width and height to same as div
 	cnv.parent("game_canvasDiv");
 	cnv.position(element.offsetLeft, element.offsetTop);
-	cnv.mousePressed(pBMouseFunc)
+	cnv.mousePressed(pBMouseFunc) //
 }
 
 /*
@@ -53,14 +53,8 @@ function draw() {
 }
 
 /*
-mousepressed()
-default function
-code added for the popball game
-*/
-/*
 function for the start button
 changes button function when clicked
-
 */
 function gameStart() {
 	if (started == false) {

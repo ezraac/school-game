@@ -7,6 +7,7 @@ var buttonfunc = "start";
 
 //ball variables
 const DIA = 50;
+const BALLCOUNT = 10;
 const BALLSPEED = [5, 4, 3, 2, -2, -3, -4, -5]; //8 different velocities
 var ballarray = [];
 
@@ -17,8 +18,7 @@ var ballhit;
 var misshit; //bool - changed to true/false when mouse is/isn't over canvas
 
 function balls() {
-	console.log("balls")
-	for (var i = 0; i < 10; i++) { //10 balls
+	for (var i = 0; i < BALLCOUNT; i++) { 
 		ballarray[i] = {
 			//positioning and speed set to random values
 			x: random(230, 270),
@@ -26,16 +26,18 @@ function balls() {
 			xspeed: random(BALLSPEED),
 			yspeed: random(BALLSPEED),
 			
-			display: function() { //creates the balls
+			//creates the balls
+			display: function() {
 				stroke(255);
 				noFill();
 				ellipse(this.x, this.y, DIA);
 			},
 
-			bounce: function() { //bounce function - reverses velocity if ball hits the edge
-				if (this.x + DIA/2 > width) { //x axis
+			//bounce function - reverses velocity if ball hits the edge
+			bounce: function() { 
+				if (this.x + DIA/2 > width) { 
 					this.xspeed = -this.xspeed	//reverses speed
-					this.x = width-DIA/2; //adjusts ball so it won't cut outside of canvas before drawn.
+					this.x = width-DIA/2; //position ball inside canvas
 				} else if (this.x - DIA/2 < 0) {
 					this.xspeed = -this.xspeed;
 					this.x = 0+DIA/2;
@@ -50,9 +52,20 @@ function balls() {
 				}
 			},
 
-			move: function() { //moves the balls
+			//moves the balls
+			move: function() {
 				this.x = this.x + this.xspeed;
 				this.y = this.y + this.yspeed;
+			},
+
+			//dist mouse to ball, returns true/false
+			distance: function() {
+				let px2ball = dist(this.x, this.y, mouseX, mouseY); //dist mouse 2 ball
+				if (px2ball <= DIA/2) {
+					return true
+				} else {
+					return false
+				}
 			}
 		}
 	}
@@ -62,13 +75,13 @@ function pBMouseFunc() {
 	if (buttonfunc == "stop") {
 		ballhit = false;
 		for (var i = 0; i < ballarray.length; i++) { //iteration through balls
-			let px2ball = dist(ballarray[i].x, ballarray[i].y, mouseX, mouseY); //finds distance of ball x,y to mouse x,y
-			if (px2ball <= DIA/2) {	//iterates through all the circles and finds the distance between the current circle and mouse cursor
+			let hit = ballarray[i].distance();
+			if (hit == true) {
 				hitscore += 1;
 				ballhit = true;
 				document.getElementById("hitscore").innerHTML = "Score: " + hitscore;
 				console.log("mouseClicked: hit ball " + i);
-				ballarray.splice(i, 1); //simple way to remove object in array
+				ballarray.splice(i, 1); //deletes object in array
 				if (ballarray.length == 0) {
 					clearInterval(pBInterval); //stops timer
 					document.getElementById("gameStartButton").style.backgroundColor = "rgb(24, 230, 72)";
