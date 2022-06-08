@@ -25,8 +25,8 @@
   <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script> 
   <!-- firebase end ********************************-->
 
-  <script defer src="modules\enum.js"></script>
   <script defer src="game_manager.js"></script>
+  <script defer src="database.js"></script>
   <script defer src="modules\firebase.js"></script>
   <script defer src="call.js"></script>
   <script defer src="popBall.js"></script>
@@ -43,6 +43,8 @@
 	  <div class="w3-container">
 		  <h1 class="w3-wide" id="helloHeader">hello</h1>
 		  <div class="w3-container w3-third" id="lP_oneThird">
+
+        <!--game enter buttons-->
 			  <button class="w3-button w3-border w3-xlarge" onclick="enterGame('popBall')">Pop Ball Game</button>
         <button class="w3-button w3-border w3-xlarge" onclick="enterGame('TTT')">Tic Tac Toe</button>
 		  </div>
@@ -56,10 +58,11 @@
 	<section id="gamePage">
 		<div class="w3-container">
 			<h1 class="w3-wide">Pop the Ball</h1>
-			<p>text goes here</p>
 			<div class="w3-container w3-third" id="game_oneThird">
         <h1 id="hellouser" style="text-align: center;">Hello Tommy</h1>
         <div class="w3-container w3-third">
+
+          <!--game details for popBall-->
           <div class="w3-container" id="game_textDiv">
             <p id="hitscore">Score: 0</p>
             <p id="highscore">Highscore: 0</p>
@@ -68,11 +71,15 @@
             <div class="w3-container" id="game_timeDiv">
               <p id=gameTimer>Time: 0s</p>
             </div>
+
             <button class="w3-button w3-border w3-xlarge" onclick="gameStart()" id="game_startButton">START</button>
+            <button class="w3-button w3-border w3-xlarge" onclick="login()" id="game_loginButton">LOGIN</button>
           </div>
         </div>
 			</div>
 			<div class="w3-container w3-twothird" id="game_twoThird">
+
+        <!--canvas positioned over this div-->
         <div class="w3-container w3-twothird" id="game_canvasDiv"></div>
       </div>
 	</section>

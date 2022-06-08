@@ -1,1 +1,0 @@
-const DBPATH = "userDetails";

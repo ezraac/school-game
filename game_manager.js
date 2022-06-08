@@ -29,7 +29,7 @@ function setup() {
 	cnv = createCanvas(element.offsetWidth, element.offsetHeight); //sets width and height to same as div
 	cnv.parent("game_canvasDiv");
 	cnv.position(element.offsetLeft, element.offsetTop);
-	cnv.mousePressed(pBMouseFunc) //
+	cnv.mousePressed(pBMouseFunc) //mouse pressed over canvas func
 }
 
 /*

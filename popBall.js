@@ -11,11 +11,10 @@ const BALLCOUNT = 10;
 const BALLSPEED = [5, 4, 3, 2, -2, -3, -4, -5]; //8 different velocities
 var ballarray = [];
 
-//other variables - called in game_manager.js - only here for tidiness
+//other variables - called in game_manager.js
 var hitscore = 0;
 var misses = 0;
 var ballhit;
-var misshit; //bool - changed to true/false when mouse is/isn't over canvas
 
 function balls() {
 	for (var i = 0; i < BALLCOUNT; i++) { 

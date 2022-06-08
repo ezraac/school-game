@@ -87,6 +87,13 @@ canvas {
   color: white;
   border-radius: 20px;
 }
+
+#game_loginButton {
+  margin-top: 20px;
+  background-color: rgb(24, 230, 72);
+  color: white;
+  border-radius: 20px;
+}
 /*************************************************************
 /*    END OF CSS
 *************************************************************/
