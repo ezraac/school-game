@@ -49,6 +49,7 @@ function fb_initialise() {
         userDetails.email    = user.email;
         userDetails.name     = user.displayName;
         userDetails.photoURL = user.photoURL;
+        userDetails.highscore= user.highscore
         loginStatus = 'logged in';
         console.log('fb_login: status = ' + loginStatus);
       } 
@@ -64,6 +65,7 @@ function fb_initialise() {
           userDetails.email    = user.email;
           userDetails.name     = user.displayName;
           userDetails.photoURL = user.photoURL;
+          userDetails.highscore= user.highscore
           loginStatus = 'logged in via popup';
           console.log('fb_login: status = ' + loginStatus);
         })
@@ -87,7 +89,7 @@ function fb_initialise() {
   // Return: 
   /*****************************************************/
   function fb_writeRec(_path, _key, _data) { 
-    console.log(`fb_WriteRec: path= ${_path} key= ${_key} data= ${_data.name} / ${_data.score}`);
+    console.log(`fb_WriteRec: path= ${_path} key= ${_key} data= ${_data.name} / ${_data.highscore}`);
       writeStatus = "waiting"
     firebase.database().ref(_path + "/" + _key).set(_data, function(error) {
       if (error) {

@@ -1,4 +1,4 @@
-const DBPATH = "userDetails"; //firebase path
+const DBPATH = "userInformation"; //firebase path
 
 var loginStatus = ' ';
 var readStatus  = ' ';
@@ -9,7 +9,7 @@ var userDetails = {
   email:    '',
   name:     '',
   photoURL: '',
-  score:    ''
+  highscore:'',
 };
 
 var dbArray = [];
@@ -25,12 +25,12 @@ function login() {
 
 function readAll() {
   // CALL YOUR READ ALL FUNCTION        <=================
-  fb_readAll(DETAILS, dbArray, _processAll);
+  fb_readAll(DBPATH, dbArray, _processAll);
 }
 
 function readRec() {
   // CALL YOUR READ A RECORD FUNCTION    <=================
-  fb_readRec(DETAILS, userDetails.uid, userDetails, _processData);
+  fb_readRec(DBPATH, userDetails.uid, userDetails, _processData);
 }
 
 
@@ -40,7 +40,7 @@ function writeRec() {
     userDetails.score = Number(prompt("enter the user's score"));
     
     // CALL YOUR WRITE A RECORD FUNCTION    <=================
-    fb_writeRec(DETAILS, userDetails.uid, userDetails);
+    fb_writeRec(DBPATH, userDetails.uid, userDetails);
   }
   else {
     dbScore     = '';
@@ -55,7 +55,6 @@ function _processData(dbData, _data) {
 	userDetails.name = dbData.name
 	userDetails.email = dbData.email
 	userDetails.photoURL = dbData.photoURL
-	userDetails.score = dbData.score
 	console.log("finished processing data")
 }
 
@@ -64,7 +63,6 @@ function _processAll(_data, dbData, dbKeys) {
 		let key = dbKeys[i]
 		_data.push({
 			name: dbData[key].name,
-			score: dbData[key].score
 		})
 	}
 }
