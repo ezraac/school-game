@@ -46,8 +46,8 @@ function reg_regDetailsEntered() {
   // Save player1's details from the form into your details object
   //  ENSURE THE OBJECT NAME THE PROGRAM SAVES TO IS CORRECT; 
   //    its currently details                                           //<======= 
-  details.gameName     =        reg_getFormItemValue("f_reg", 0);       //<=======
-  details.phone        = Number(reg_getFormItemValue("f_reg", 1));      //<=======
+  userDetails.gameName     =        reg_getFormItemValue("f_reg", 0);       //<=======
+  userDetails.phone        = Number(reg_getFormItemValue("f_reg", 1));      //<=======
   
   console.log("reg_regDetailsEntered: form passed html validation - " +
             document.getElementById('f_reg').checkValidity()); 
