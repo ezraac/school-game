@@ -1,15 +1,7 @@
-/*****************************************************/
-// Written by ???  2021
-// v1 firebase DB testing write AND read to firebase
-// v2 add Google login
-/*****************************************************/
-const PADDING  = 15;
-const PANELW   = 130;
-const NEXTLINE = 30;
-
 /*dbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdb*/
 // database variables
-const DETAILS = "userInformation"      //<=============== INSERT YOUR FIREBASE PATH NAME HERE
+const DBPATH = "userInformation";
+const AUTHPATH = "authorizedUsers";
 
 var loginStatus = ' ';
 var readStatus  = ' ';
@@ -20,18 +12,12 @@ var userDetails = {
   email:    '',
   name:     '',
   photoURL: '',
-  highscore:    ''
+  highscore:'',
+  username: '',
 };
 
 var dbArray = [];
 /*dbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdb*/
-
-/*****************************************************/
-// setup
-/*****************************************************/
-function setup() {
-  fb_initialise();                     // connect to firebase
-}
 
 /*****************************************************/
 // login()
@@ -42,6 +28,7 @@ function setup() {
 /*****************************************************/
 function login() {
   fb_login(userDetails);
+  reg_popUp(userDetails);
 }
 
 /*****************************************************/
@@ -53,7 +40,7 @@ function login() {
 /*****************************************************/
 function readAll() {
   // CALL YOUR READ ALL FUNCTION        <=================
-  fb_readAll(DETAILS, dbArray, _processAll);
+  fb_readAll(DBPATH, dbArray, _processAll);
 }
 
 /*****************************************************/
@@ -65,7 +52,7 @@ function readAll() {
 /*****************************************************/
 function readRec() {
   // CALL YOUR READ A RECORD FUNCTION    <=================
-  fb_readRec(DETAILS, userDetails.uid, userDetails, _processData);
+  fb_readRec(DBPATH, userDetails.uid, userDetails, _processData);
 }
 
 /*****************************************************/
@@ -76,11 +63,10 @@ function readRec() {
 // Return:
 /*****************************************************/
 function writeRec() {
+  console.log(userDetails.uid)
   if (userDetails.uid != '') {
-    userDetails.score = Number(prompt("enter the user's score"));
-    
     // CALL YOUR WRITE A RECORD FUNCTION    <=================
-    fb_writeRec(DETAILS, userDetails.uid, userDetails);
+    fb_writeRec(DBPATH, userDetails.uid, userDetails);
 	  console.log(userDetails)
   }
   else {
@@ -96,8 +82,9 @@ function _processData(dbData, _data) {
 	userDetails.name = dbData.name
 	userDetails.email = dbData.email
 	userDetails.photoURL = dbData.photoURL
-	userDetails.score = dbData.score
+	userDetails.highscore = dbData.highscore
 	console.log("finished processing data")
+  console.log(userDetails);
 }
 
 function _processAll(_data, dbData, dbKeys) {
@@ -105,7 +92,7 @@ function _processAll(_data, dbData, dbKeys) {
 		let key = dbKeys[i]
 		_data.push({
 			name: dbData[key].name,
-			score: dbData[key].score
+			highscore: dbData[key].highscore
 		})
 	}
 }

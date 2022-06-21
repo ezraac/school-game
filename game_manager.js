@@ -30,6 +30,7 @@ function setup() {
 	cnv.parent("game_canvasDiv");
 	cnv.position(element.offsetLeft, element.offsetTop);
 	cnv.mousePressed(pBMouseFunc) //mouse pressed over canvas func
+	fb_initialise();
 }
 
 /*
@@ -75,10 +76,10 @@ function gameStart() {
 	} else {
 		started = false
 		if (buttonfunc == "stop") {
-			document.getElementById("game_startButton").style.backgroundColor = "rgb(24, 230, 72)";
-			document.getElementById("game_startButton").innerHTML = "START"; //changes button to start button
-			buttonfunc = "start";
             if (whatGame == "popBall") {
+				document.getElementById("game_startButton").style.backgroundColor = "rgb(24, 230, 72)";
+				document.getElementById("game_startButton").innerHTML = "START"; //changes button to start button
+				buttonfunc = "start";
                 ballarray.splice(0, ballarray.length); //removes all balls in object
                 started = false;
                 clearInterval(pBInterval); //stop timer

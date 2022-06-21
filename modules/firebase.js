@@ -35,22 +35,23 @@ var firebaseConfig = {
 // fb_login(_dataRec)
 // Called by setup
 // Login to Firebase
-// Input:  n/a
+// Input:  where to save the google data
 // Return: n/a
 /*****************************************************/
-function fb_login() {
+function fb_login(_dataRec) {
   console.log('fb_login: ');
   firebase.auth().onAuthStateChanged(newLogin);
 
   function newLogin(user) {
     if (user) {
       // user is signed in, so save Google login details
-      userDetails.uid      = user.uid;
-      userDetails.email    = user.email;
-      userDetails.name     = user.displayName;
-      userDetails.photoURL = user.photoURL;
+      _dataRec.uid      = user.uid;
+      _dataRec.email    = user.email;
+      _dataRec.name     = user.displayName;
+      _dataRec.photoURL = user.photoURL;
       loginStatus = 'logged in';
       console.log('fb_login: status = ' + loginStatus);
+      fb_readRec(DBPATH, userDetails.uid, userDetails, _processData);
     } 
     else {
       // user NOT logged in, so redirect to Google login
@@ -60,12 +61,13 @@ function fb_login() {
       var provider = new firebase.auth.GoogleAuthProvider();
       //firebase.auth().signInWithRedirect(provider); // Another method
       firebase.auth().signInWithPopup(provider).then(function(result) {
-        userDetails.uid      = user.uid;
-        userDetails.email    = user.email;
-        userDetails.name     = user.displayName;
-        userDetails.photoURL = user.photoURL;
+        _dataRec.uid      = user.uid;
+        _dataRec.email    = user.email;
+        _dataRec.name     = user.displayName;
+        _dataRec.photoURL = user.photoURL;
         loginStatus = 'logged in via popup';
         console.log('fb_login: status = ' + loginStatus);
+        fb_readRec(DBPATH, userDetails.uid, userDetails, _processData);
       })
       // Catch errors
       .catch(function(error) {

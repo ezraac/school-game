@@ -83,8 +83,8 @@ function pBMouseFunc() {
 				ballarray.splice(i, 1); //deletes object in array
 				if (ballarray.length == 0) {
 					clearInterval(pBInterval); //stops timer
-					document.getElementById("gameStartButton").style.backgroundColor = "rgb(24, 230, 72)";
-					document.getElementById("gameStartButton").innerHTML = "START"; //changes button to start button
+					document.getElementById("game_startButton").style.backgroundColor = "rgb(24, 230, 72)";
+					document.getElementById("game_startButton").innerHTML = "START"; //changes button to start button
 					buttonfunc = "start";
 					misses = 0;
 				}

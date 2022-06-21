@@ -29,10 +29,12 @@
   // These two lines need to be executed only after the                 //<=======
   //  registration page is displayed                                    //<=======
   // Save name & email into the form
-  // ENSURE THE OBJECT NAME IS CORRECT; its currently details           //<======= 
-  document.getElementById("p_regName").innerHTML  = details.name        //<=======    
-  document.getElementById("p_regEmail").innerHTML = details.email       //<=======   
-
+  // ENSURE THE OBJECT NAME IS CORRECT; its currently details           //<=======
+function reg_popUp(_details) {
+  document.getElementById("p_regName").innerHTML  = _details.name;        //<=======    
+  document.getElementById("p_regEmail").innerHTML = _details.email;       //<=======  
+}
+ 
 /**************************************************************/
 // reg_regDetailsEntered()
 // Input event; called when user clicks ?????????? button               //<========
@@ -40,21 +42,23 @@
 // Input:   
 // Return:
 /**************************************************************/
-function reg_regDetailsEntered() {
+function reg_regDetailsEntered(_details) {
   console.log('reg_regDetailsEntered'); 
      
   // Save player1's details from the form into your details object
   //  ENSURE THE OBJECT NAME THE PROGRAM SAVES TO IS CORRECT; 
   //    its currently details                                           //<======= 
-  userDetails.gameName     =        reg_getFormItemValue("f_reg", 0);       //<=======
-  userDetails.phone        = Number(reg_getFormItemValue("f_reg", 1));      //<=======
+  _details.username     =        reg_getFormItemValue("f_reg", 0);       //<=======
+  _details.phone        = Number(reg_getFormItemValue("f_reg", 1));      //<=======
   
   console.log("reg_regDetailsEntered: form passed html validation - " +
-            document.getElementById('f_reg').checkValidity()); 
+            document.getElementById('f_reg').checkValidity());
+  
 
   // Only write record to DB if all the fom's input passed html validation
   if (document.getElementById('f_reg').checkValidity()) {
-    // call your function to write to details record firebase         //<=======
+    writeRec(DBPATH, userDetails.uid, _details); //<=======
+    document.getElementById("username").innerHTML = `Username: ${_details.username}`;
   }
 }
 
