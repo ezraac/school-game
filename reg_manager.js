@@ -42,14 +42,16 @@ function reg_popUp(_details) {
 // Input:   
 // Return:
 /**************************************************************/
-function reg_regDetailsEntered(_details) {
+function reg_regDetailsEntered() {
   console.log('reg_regDetailsEntered'); 
+  console.log(userDetails);
+
      
   // Save player1's details from the form into your details object
   //  ENSURE THE OBJECT NAME THE PROGRAM SAVES TO IS CORRECT; 
   //    its currently details                                           //<======= 
-  _details.username     =        reg_getFormItemValue("f_reg", 0);       //<=======
-  _details.phone        = Number(reg_getFormItemValue("f_reg", 1));      //<=======
+  userDetails.username     =        reg_getFormItemValue("f_reg", 0);       //<=======
+  userDetails.phone        = Number(reg_getFormItemValue("f_reg", 1));      //<=======
   
   console.log("reg_regDetailsEntered: form passed html validation - " +
             document.getElementById('f_reg').checkValidity());
@@ -57,8 +59,10 @@ function reg_regDetailsEntered(_details) {
 
   // Only write record to DB if all the fom's input passed html validation
   if (document.getElementById('f_reg').checkValidity()) {
-    writeRec(DBPATH, userDetails.uid, _details); //<=======
-    document.getElementById("username").innerHTML = `Username: ${_details.username}`;
+    writeRec(DBPATH, userDetails.uid, userDetails); //<=======
+    document.getElementById("username").innerHTML = `Username: ${userDetails.username}`;
+    document.getElementById("landingPage").style.display = "block";
+    document.getElementById("registrationPage").style.display = "none";
   }
 }
 
@@ -76,6 +80,11 @@ function reg_getFormItemValue(_elementId, _item) {
   return document.getElementById(_elementId).elements.item(_item).value;
 }
 
+function reg_showPage() {
+  document.getElementById("landingPage").style.display = "none";
+  document.getElementById("gamePage").style.display = "none";
+  document.getElementById("registrationPage").style.display = "block";
+}
 /**************************************************************/
 //    END OF PROG
 /**************************************************************/

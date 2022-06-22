@@ -28,7 +28,6 @@ var dbArray = [];
 /*****************************************************/
 function login() {
   fb_login(userDetails);
-  reg_popUp(userDetails);
 }
 
 /*****************************************************/
@@ -76,26 +75,7 @@ function writeRec() {
   }
 }
 
-function _processData(dbData, _data) {
-	console.log("processing data")
-	userDetails.uid = dbData.uid
-	userDetails.name = dbData.name
-	userDetails.email = dbData.email
-	userDetails.photoURL = dbData.photoURL
-	userDetails.highscore = dbData.highscore
-	console.log("finished processing data")
-  console.log(userDetails);
-}
 
-function _processAll(_data, dbData, dbKeys) {
-	for (i=0; i < dbKeys.length; i++) {
-		let key = dbKeys[i]
-		_data.push({
-			name: dbData[key].name,
-			highscore: dbData[key].highscore
-		})
-	}
-}
 
 /*****************************************************/
 //    END OF PROG

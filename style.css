@@ -103,7 +103,7 @@ canvas {
 #registrationPage {
   display: none;
   /* The line below is just so you can see the form during testing //<========*/ 
-  display: block; /* <===== ONCE FORM IS DESIGNED DELETE THIS LINE //<========*/ 
+  /*display: block;*/ /* <===== ONCE FORM IS DESIGNED DELETE THIS LINE //<========*/ 
   height:  86vh;
 }
 

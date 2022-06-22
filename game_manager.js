@@ -30,7 +30,11 @@ function setup() {
 	cnv.parent("game_canvasDiv");
 	cnv.position(element.offsetLeft, element.offsetTop);
 	cnv.mousePressed(pBMouseFunc) //mouse pressed over canvas func
+
+	//initialise firebase
+	//attempts login to google
 	fb_initialise();
+	login();
 }
 
 /*

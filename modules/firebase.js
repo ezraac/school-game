@@ -52,6 +52,7 @@ function fb_login(_dataRec) {
       loginStatus = 'logged in';
       console.log('fb_login: status = ' + loginStatus);
       fb_readRec(DBPATH, userDetails.uid, userDetails, _processData);
+	  reg_popUp(userDetails);
     } 
     else {
       // user NOT logged in, so redirect to Google login
@@ -68,6 +69,8 @@ function fb_login(_dataRec) {
         loginStatus = 'logged in via popup';
         console.log('fb_login: status = ' + loginStatus);
         fb_readRec(DBPATH, userDetails.uid, userDetails, _processData);
+		fb_writeRec(AUTHPATH, _dataRec.uid, 1);
+		reg_popUp(userDetails);
       })
       // Catch errors
       .catch(function(error) {
@@ -143,6 +146,7 @@ function fb_readAll(_path, _data, _processAll) {
 // Return:  
 /*****************************************************/
 function fb_readRec(_path, _key, _data, _processData) {	
+	console.log(_path, _key, _data, _processData)
     console.log('fb_readRec: path= ' + _path + '  key= ' + _key);
 
 	readStatus = "waiting"
@@ -150,6 +154,7 @@ function fb_readRec(_path, _key, _data, _processData) {
 
 	function gotRecord(snapshot) {
 		let dbData = snapshot.val()
+		console.log(dbData)
 		if (dbData == null) {
 			readStatus = "no record"
 			_processData(dbData)
@@ -163,6 +168,31 @@ function fb_readRec(_path, _key, _data, _processData) {
 	function readErr(error) {
 		readStatus = "fail"
 		console.log(error)
+	}
+}
+
+function _processData(dbData, _data) {
+	console.log("processing data")
+	console.log(dbData)
+	if (dbData == null) {
+		reg_showPage();
+	} else {
+		userDetails.uid = dbData.uid
+		userDetails.name = dbData.name
+		userDetails.email = dbData.email
+		userDetails.photoURL = dbData.photoURL
+		userDetails.highscore = dbData.highscore
+		console.log("finished processing data")
+	}
+}
+
+function _processAll(_data, dbData, dbKeys) {
+	for (i=0; i < dbKeys.length; i++) {
+		let key = dbKeys[i]
+		_data.push({
+			name: dbData[key].name,
+			highscore: dbData[key].highscore
+		})
 	}
 }
 /*****************************************************/
