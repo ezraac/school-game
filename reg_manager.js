@@ -3,6 +3,7 @@
 //
 // Test registration page
 // Written by Mr Bob 2020
+// Tailored by Ezra 2022
 // v01 Initial code
 // v02 Include reg_getFormItemValue function in reg_manager.js 
 // v03 Add reg_prep function
@@ -52,6 +53,7 @@ function reg_regDetailsEntered() {
   //    its currently details                                           //<======= 
   userDetails.username     =        reg_getFormItemValue("f_reg", 0);       //<=======
   userDetails.phone        = Number(reg_getFormItemValue("f_reg", 1));      //<=======
+  userDetails.sex          =        reg_getFormItemValue("f_reg", 2);
   
   console.log("reg_regDetailsEntered: form passed html validation - " +
             document.getElementById('f_reg').checkValidity());

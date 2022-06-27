@@ -1,6 +1,7 @@
 /*****************************************************/
 // fb_io.js
-// Written by ezra   2021
+// Written by Mr Bob 2020
+// Edited and tailored by Ezra 2022
 /*****************************************************/
 
 /*****************************************************/
@@ -124,9 +125,9 @@ function fb_readAll(_path, _data, _processAll) {
 		}
 		else {
 			readStatus = "ok"
-			let dbData = snapshot.val()
+			var dbData = snapshot.val()
 			console.log(dbData)
-			let dbKeys = Object.keys(dbData)
+			var dbKeys = Object.keys(dbData)
 
 			_processAll(_data, dbData, dbKeys)
 		}
@@ -181,7 +182,12 @@ function _processData(dbData, _data) {
 		userDetails.name = dbData.name
 		userDetails.email = dbData.email
 		userDetails.photoURL = dbData.photoURL
-		userDetails.highscore = dbData.highscore
+		userDetails.username = dbData.username
+		userDetails.sex = dbData.sex
+		userDetails.PTB_TimeRec = dbData.PTB_TimeRec
+		userDetails.TTT_Wins = dbData.TTT_Wins
+		userDetails.TTT_Losses = dbData.TTT_Losses
+
 		console.log("finished processing data")
 	}
 }

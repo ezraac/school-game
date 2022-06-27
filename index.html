@@ -31,6 +31,7 @@
   <script defer src="database.js"></script>
   <script defer src="modules\firebase.js"></script>
   <script defer src="game_manager.js"></script>
+  <script defer src="ad_manager.js"></script>
   <script defer src="call.js"></script>
   <script defer src="popBall.js"></script>
 </head>
@@ -44,6 +45,17 @@
   ****************************************************-->
   <section id="landingPage">
 	  <div class="w3-container">
+      <div class="w3-row">
+        <div class="w3-container w3-grey w3-col m10">
+          <h1 class="w3-wide">???YOUR HEADING GOES HERE????</h1>  <!-- <======= -->
+        </div>
+        <div class="w3-container w3-grey w3-col m2">
+          <button id="lP_Admin" style="background-color: grey; width: 100%; display: block;"
+                  class="w3-button w3-border w3-margin" 
+                  onclick="ad_admin()">ADMIN
+          </button>
+        </div>
+      </div>
 		  <h1 class="w3-wide" id="helloHeader">hello</h1>
 		  <div class="w3-container w3-third" id="lP_oneThird">
 
@@ -160,6 +172,39 @@
       </form>
     </div>
   </section>
+
+    <!--*************************************************************
+			ADMIN PAGE 
+  **************************************************************-->
+  <section id="s_adminPage" class="w3-grey">
+    <div class="w3-row">
+      <div class="w3-container w3-grey w3-col m10">
+        <h1 class="w3-wide">Admin page</h1>
+      </div>
+    </div>
+    
+    <nav id="n_admin" class="w3-bar stickyNav">
+      <button id="b_adHome" class="w3-button w3-block w3-col m3 
+                                   w3-medium w3-ripple w3-border" 
+              onclick="ad_home()" value="Submit">home
+	  </button>
+      <button id="b_adUser" class="w3-button w3-block w3-col m3 
+                                   w3-medium w3-ripple w3-small w3-border" 
+              onclick="ad_user()" value="Submit">users
+      </button>
+      <button id="b_adPTB" class="w3-button w3-block w3-col m3 
+                                 w3-medium w3-ripple w3-small w3-border" 
+              onclick="ad_PTB()" value="Submit">PTB
+      </button>
+    </nav>
+      
+    <div>
+      <div id="d_admin" class="w3-table-all w3-small w3-light-grey 
+                               w3-hoverable w3-border w3-bordered content">
+	    <table id="t_userData" class="w3-text-black"></table>
+	  </div>
+    </div>
+  </section> 
 </body>
 </html>
 <!-- END OF HTML -++++++++++++++++++++++++++++++++++-->

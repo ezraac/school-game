@@ -12,8 +12,11 @@ var userDetails = {
   email:    '',
   name:     '',
   photoURL: '',
-  highscore:'',
+  sex:      '',
+  PTB_TimeRec:'',
   username: '',
+  TTT_Wins: '',
+  TTT_Losses:'',
 };
 
 var dbArray = [];
@@ -66,7 +69,6 @@ function writeRec() {
   if (userDetails.uid != '') {
     // CALL YOUR WRITE A RECORD FUNCTION    <=================
     fb_writeRec(DBPATH, userDetails.uid, userDetails);
-	  console.log(userDetails)
   }
   else {
     dbScore     = '';
