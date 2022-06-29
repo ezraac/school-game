@@ -84,6 +84,8 @@ function fb_login(_dataRec) {
       });
     }
   }
+  var admin_perms = check_permissions(_dataRec.uid);
+  console.log(admin_perms[userDetails.uid])
 }
 
 /*****************************************************/
@@ -129,7 +131,7 @@ function fb_readAll(_path, _data, _processAll) {
 			console.log(dbData)
 			var dbKeys = Object.keys(dbData)
 
-			_processAll(_data, dbData, dbKeys)
+			_processAll(_data, snapshot, dbKeys)
 		}
 	}
 

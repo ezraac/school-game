@@ -112,15 +112,15 @@ function ad_admin() {
   //         NOTE: this is the raw data, EG snapshot, NOT snapshot.val()
   // Return:
   /**************************************************************/
-  function ad_processUSERReadAll(_result, _dbRec) {
-    console.log('ad_processUSERReadAll: ', 'result = ' + _result);
+  function ad_processUSERReadAll(_data, _dbRec) {
+    console.log('ad_processUSERReadAll: ');
   
     var childKey;
     var childData;
     var ad_adminArray = [];
   
     // Note: if read was successful, 1st input parameter must = "OK"       //<=======
-    if (_result == 'OK') {                                        
+    if (_dbRec != null) {                                        
       _dbRec.forEach(function(childSnapshot) {
         childKey = childSnapshot.key;
         childData = childSnapshot.val();
@@ -153,7 +153,7 @@ function ad_admin() {
       //  7 = COLUMMN NUMBER WHICH CONTAINS THE DATABASE KEY.              //<=======
       //  8 = DATABASE PATH THE RECORDS WERE READ FROM.                    //<=======
       ad_displayAll("t_userData", ad_adminArray, true,                     
-        "gamePage", "gamePage", "s_adminPage", 12, DBPATH);        //<=======
+        "landingPage", "gamePage", "s_adminPage", 8, DBPATH);        //<=======
     }
   }
   
