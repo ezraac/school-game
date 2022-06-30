@@ -121,7 +121,7 @@ canvas {
   overflow: scroll;
 }
 
-#b_lpAdmin {
+#lP_Admin {
   display: none;   /* none = don't display element */
 }
 

@@ -39,21 +39,23 @@ var firebaseConfig = {
 // Input:  where to save the google data
 // Return: n/a
 /*****************************************************/
-function fb_login(_dataRec) {
+function fb_login(_dataRec, permissions) {
   console.log('fb_login: ');
   firebase.auth().onAuthStateChanged(newLogin);
 
   function newLogin(user) {
     if (user) {
-      // user is signed in, so save Google login details
-      _dataRec.uid      = user.uid;
-      _dataRec.email    = user.email;
-      _dataRec.name     = user.displayName;
-      _dataRec.photoURL = user.photoURL;
-      loginStatus = 'logged in';
-      console.log('fb_login: status = ' + loginStatus);
-      fb_readRec(DBPATH, userDetails.uid, userDetails, _processData);
-	  reg_popUp(userDetails);
+		// user is signed in, so save Google login details
+		_dataRec.uid      = user.uid;
+		_dataRec.email    = user.email;
+		_dataRec.name     = user.displayName;
+		_dataRec.photoURL = user.photoURL;
+
+		fb_readRec(DBPATH, _dataRec.uid, userDetails, fb_processUserDetails);
+		fb_readRec(AUTHPATH, _dataRec.uid, permissions, fb_processAuthRole);
+		loginStatus = 'logged in';
+		console.log('fb_login: status = ' + loginStatus);
+		readRec();
     } 
     else {
       // user NOT logged in, so redirect to Google login
@@ -69,7 +71,7 @@ function fb_login(_dataRec) {
         _dataRec.photoURL = user.photoURL;
         loginStatus = 'logged in via popup';
         console.log('fb_login: status = ' + loginStatus);
-        fb_readRec(DBPATH, userDetails.uid, userDetails, _processData);
+        db_readRec();
 		fb_writeRec(AUTHPATH, _dataRec.uid, 1);
 		reg_popUp(userDetails);
       })
@@ -84,8 +86,6 @@ function fb_login(_dataRec) {
       });
     }
   }
-  var admin_perms = check_permissions(_dataRec.uid);
-  console.log(admin_perms[userDetails.uid])
 }
 
 /*****************************************************/
@@ -131,14 +131,14 @@ function fb_readAll(_path, _data, _processAll) {
 			console.log(dbData)
 			var dbKeys = Object.keys(dbData)
 
-			_processAll(_data, snapshot, dbKeys)
+			fb_processAll(_data, snapshot, dbKeys)
 		}
 	}
 
 	function readErr(error) {
 		readData = "fail"
 		console.log(error)
-		_processAll(_data, dbData, dbKeys)
+		fb_processAll(_data, dbData, dbKeys)
 	}
 }
 
@@ -148,8 +148,7 @@ function fb_readAll(_path, _data, _processAll) {
 // Input:  path & key of record to read and where to save it
 // Return:  
 /*****************************************************/
-function fb_readRec(_path, _key, _data, _processData) {	
-	console.log(_path, _key, _data, _processData)
+function fb_readRec(_path, _key, _data, _processData, _dataType) {	
     console.log('fb_readRec: path= ' + _path + '  key= ' + _key);
 
 	readStatus = "waiting"
@@ -160,7 +159,7 @@ function fb_readRec(_path, _key, _data, _processData) {
 		console.log(dbData)
 		if (dbData == null) {
 			readStatus = "no record"
-			_processData(dbData)
+			fb_processUserDetails(dbData)
 		}
 		else {
 			readStatus = "ok"
@@ -174,32 +173,36 @@ function fb_readRec(_path, _key, _data, _processData) {
 	}
 }
 
-function _processData(dbData, _data) {
+function fb_processUserDetails(_dbData, _data) {
 	console.log("processing data")
-	console.log(dbData)
-	if (dbData == null) {
+	console.log(_dbData)
+	if (_dbData == null) {
 		reg_showPage();
 	} else {
-		userDetails.uid = dbData.uid
-		userDetails.name = dbData.name
-		userDetails.email = dbData.email
-		userDetails.photoURL = dbData.photoURL
-		userDetails.username = dbData.username
-		userDetails.sex = dbData.sex
-		userDetails.PTB_TimeRec = dbData.PTB_TimeRec
-		userDetails.TTT_Wins = dbData.TTT_Wins
-		userDetails.TTT_Losses = dbData.TTT_Losses
+		userDetails.uid = _dbData.uid
+		userDetails.name = _dbData.name
+		userDetails.email = _dbData.email
+		userDetails.photoURL = _dbData.photoURL
+		userDetails.username = _dbData.username
+		userDetails.sex = _dbData.sex
+		userDetails.PTB_TimeRec = _dbData.PTB_TimeRec
+		userDetails.TTT_Wins = _dbData.TTT_Wins
+		userDetails.TTT_Losses = _dbData.TTT_Losses
 
 		console.log("finished processing data")
 	}
 }
 
-function _processAll(_data, dbData, dbKeys) {
+function fb_processAuthRole(_dbData, _data) {
+	_data.userAuthRole = _dbData.userAuthRole;
+}
+
+function fb_processAll(_data, _dbData, dbKeys) {
 	for (i=0; i < dbKeys.length; i++) {
 		let key = dbKeys[i]
 		_data.push({
-			name: dbData[key].name,
-			highscore: dbData[key].highscore
+			name: _dbData[key].name,
+			highscore: _dbData[key].highscore
 		})
 	}
 }

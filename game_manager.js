@@ -35,7 +35,7 @@ function setup() {
 	//initialise firebase
 	//attempts login to google
 	fb_initialise();
-	login();
+	db_login();
 }
 
 /*

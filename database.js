@@ -19,6 +19,10 @@ var userDetails = {
   TTT_Losses:'',
 };
 
+var permissions = {
+  userAuthRole: null;
+}
+
 var dbArray = [];
 /*dbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdb*/
 
@@ -29,8 +33,8 @@ var dbArray = [];
 // Input:
 // Return:
 /*****************************************************/
-function login() {
-  fb_login(userDetails);
+function db_login() {
+  fb_login(userDetails, permissions);
 }
 
 /*****************************************************/
@@ -40,7 +44,7 @@ function login() {
 // Input:
 // Return:
 /*****************************************************/
-function readAll() {
+function db_readAll() {
   // CALL YOUR READ ALL FUNCTION        <=================
   fb_readAll(DBPATH, dbArray, _processAll);
 }
@@ -52,9 +56,9 @@ function readAll() {
 // Input:
 // Return:
 /*****************************************************/
-function readRec() {
+function db_readRec() {
   // CALL YOUR READ A RECORD FUNCTION    <=================
-  fb_readRec(DBPATH, userDetails.uid, userDetails, _processData);
+  fb_readRec(DBPATH, userDetails.uid, userDetails, _processData, "userDetails");
 }
 
 /*****************************************************/
@@ -64,7 +68,7 @@ function readRec() {
 // Input:
 // Return:
 /*****************************************************/
-function writeRec() {
+function db_writeRec() {
   console.log(userDetails.uid)
   if (userDetails.uid != '') {
     // CALL YOUR WRITE A RECORD FUNCTION    <=================

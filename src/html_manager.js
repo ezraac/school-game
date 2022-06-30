@@ -1,8 +1,6 @@
-var permissions = []
-
-
-
-function check_permissions(uid) {
-    fb_readRec(AUTHPATH, uid, permissions, _processData);
-    return permissions;
+function HTML_updateHTMLFromPerms() {
+    console.log(permissions.userAuthRole)
+    if (permissions.userAuthRole >= 2) {
+        document.getElementById("lP_Admin").style.display = "block";
+    }
 }
