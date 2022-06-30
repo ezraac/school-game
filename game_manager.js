@@ -65,9 +65,9 @@ changes button function when clicked
 function gameStart() {
 	if (started == false) {
 		started = true;
-		time = 0;
-		misses = 0;
-		hitscore = 0;
+		PTB_time = 0;
+		PTB_misses = 0;
+		PTB_hitscore = 0;
 		document.getElementById("hitscore").innerHTML = "Score: 0"
 		if (buttonfunc == "start") {
             if (whatGame == "popBall") {

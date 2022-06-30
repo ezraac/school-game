@@ -55,7 +55,7 @@ function fb_login(_dataRec, permissions) {
 		fb_readRec(AUTHPATH, _dataRec.uid, permissions, fb_processAuthRole);
 		loginStatus = 'logged in';
 		console.log('fb_login: status = ' + loginStatus);
-		readRec();
+		db_readRec();
     } 
     else {
       // user NOT logged in, so redirect to Google login
@@ -131,14 +131,14 @@ function fb_readAll(_path, _data, _processAll) {
 			console.log(dbData)
 			var dbKeys = Object.keys(dbData)
 
-			fb_processAll(_data, snapshot, dbKeys)
+			_processAll(_data, snapshot, dbKeys) //admin process all declared in admin_manager.js
 		}
 	}
 
 	function readErr(error) {
 		readData = "fail"
 		console.log(error)
-		fb_processAll(_data, dbData, dbKeys)
+		_processAll(_data, dbData, dbKeys)
 	}
 }
 
@@ -194,10 +194,16 @@ function fb_processUserDetails(_dbData, _data) {
 }
 
 function fb_processAuthRole(_dbData, _data) {
-	_data.userAuthRole = _dbData.userAuthRole;
+	if (_dbData == null) {
+		fb_writeRec(AUTHPATH, userDetails.uid, 1);
+	} else {
+		_data.userAuthRole = _dbData;
+		HTML_updateHTMLFromPerms();
+	}
 }
 
 function fb_processAll(_data, _dbData, dbKeys) {
+	console.log(_data)
 	for (i=0; i < dbKeys.length; i++) {
 		let key = dbKeys[i]
 		_data.push({

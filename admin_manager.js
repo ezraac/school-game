@@ -62,12 +62,11 @@ function ad_admin() {
   /**************************************************************/
   function ad_home() {
     console.log('ad_home: ');
+    HTML_updateAdminPage("ad_home")
   
     // Display the HOME (landing page) screen
     // ENSURE THE HTML ID ARE CORRECT                                      //<=======
-    document.getElementById('gamePage').style.display    = "none";                                  //<=======
-    document.getElementById("landingPage").style.display   = "block";                                  //<=======
-    document.getElementById('s_adminPage').style.display = "none";                                 //<=======
+                      //<=======
   }
   
   /**************************************************************/
@@ -79,10 +78,7 @@ function ad_admin() {
   /**************************************************************/
   function ad_user() {
     console.log('ad_user: ');
-  
-    document.getElementById("b_adUser").style.backgroundColor = "cyan";
-    document.getElementById("b_adHome").style.backgroundColor = "grey";
-    document.getElementById("b_adPTB").style.backgroundColor   = "grey";
+    HTML_updateAdminPage("ad_user")
     // ENSURE THE READ FUNCTION NAME & THE PATH NAME ARE CORRECT           //<=======
     fb_readAll(DBPATH, "", ad_processUSERReadAll);                            //<=======
   }
@@ -97,9 +93,7 @@ function ad_admin() {
   function ad_PTB() {
     console.log('ad_BB: ');
     
-    document.getElementById("b_adPTB").style.backgroundColor   = "cyan";
-    document.getElementById("b_adUser").style.backgroundColor = "grey";
-    document.getElementById("b_adHome").style.backgroundColor = "grey"; 
+     HTML_updateAdminPage("ad_PTB")
     // ENSURE THE READ FUNCTION NAME & THE PATH NAME ARE CORRECT           //<=======
     fb_readAll(DBPATH, "", ad_processBBReadAll);                                   //<=======
   }

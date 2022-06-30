@@ -2,7 +2,7 @@
   Written by Ezra Chai Term 2 2021
   Program for popBall game.
 *****************************************************/
-var time = 0;
+var PTB_time = 0;
 var buttonfunc = "start";
 
 //ball variables
@@ -12,8 +12,8 @@ const BALLSPEED = [5, 4, 3, 2, -2, -3, -4, -5]; //8 different velocities
 var ballarray = [];
 
 //other variables - called in game_manager.js
-var hitscore = 0;
-var misses = 0;
+var PTB_hitscore = 0;
+var PTB_misses = 0;
 var ballhit;
 
 function balls() {
@@ -76,7 +76,7 @@ function pBMouseFunc() {
 		for (var i = 0; i < ballarray.length; i++) { //iteration through balls
 			let hit = ballarray[i].distance();
 			if (hit == true) {
-				hitscore += 1;
+				PTB_hitscore += 1;
 				ballhit = true;
 				document.getElementById("hitscore").innerHTML = "Score: " + hitscore;
 				console.log("mouseClicked: hit ball " + i);

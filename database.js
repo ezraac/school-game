@@ -20,7 +20,7 @@ var userDetails = {
 };
 
 var permissions = {
-  userAuthRole: null;
+  userAuthRole: null,
 }
 
 var dbArray = [];
@@ -46,7 +46,7 @@ function db_login() {
 /*****************************************************/
 function db_readAll() {
   // CALL YOUR READ ALL FUNCTION        <=================
-  fb_readAll(DBPATH, dbArray, _processAll);
+  fb_readAll(DBPATH, dbArray, fb_processAll);
 }
 
 /*****************************************************/
@@ -58,7 +58,7 @@ function db_readAll() {
 /*****************************************************/
 function db_readRec() {
   // CALL YOUR READ A RECORD FUNCTION    <=================
-  fb_readRec(DBPATH, userDetails.uid, userDetails, _processData, "userDetails");
+  fb_readRec(DBPATH, userDetails.uid, userDetails, fb_processUserDetails);
 }
 
 /*****************************************************/
