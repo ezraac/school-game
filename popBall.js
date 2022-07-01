@@ -78,7 +78,7 @@ function pBMouseFunc() {
 			if (hit == true) {
 				PTB_hitscore += 1;
 				ballhit = true;
-				document.getElementById("hitscore").innerHTML = "Score: " + hitscore;
+				document.getElementById("hitscore").innerHTML = "Score: " + PTB_hitscore;
 				console.log("mouseClicked: hit ball " + i);
 				ballarray.splice(i, 1); //deletes object in array
 				if (ballarray.length == 0) {

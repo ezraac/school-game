@@ -47,8 +47,8 @@ amount of "draws" per second controlled by frame rate (defaulted to 60). to be l
 function draw() {
     if (whatGame == "popBall") {
         background(0);
-        document.getElementById("gameTimer").innerHTML = "Time: " + time + "s"; //timer text
-		document.getElementById("misses").innerHTML = "Misses: " + misses;
+        document.getElementById("gameTimer").innerHTML = "Time: " + PTB_time + "s"; //timer text
+		document.getElementById("misses").innerHTML = "Misses: " + PTB_misses;
         for (var i = 0; i < ballarray.length; i++) {
 			//ball functions
             ballarray[i].display();

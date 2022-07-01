@@ -51,12 +51,12 @@ function fb_login(_dataRec, permissions) {
 		_dataRec.name     = user.displayName;
 		_dataRec.photoURL = user.photoURL;
 
-		fb_readRec(DBPATH, _dataRec.uid, userDetails, fb_processUserDetails);
-		fb_readRec(AUTHPATH, _dataRec.uid, permissions, fb_processAuthRole);
+		fb_readRec(DBPATH, _dataRec.uid, userDetails, fb_processUserDetails); //reads user details
+		fb_readRec(AUTHPATH, _dataRec.uid, permissions, fb_processAuthRole); //reads user auth role
 		loginStatus = 'logged in';
 		console.log('fb_login: status = ' + loginStatus);
 		db_readRec();
-    } 
+    }
     else {
       // user NOT logged in, so redirect to Google login
       loginStatus = 'logged out';
@@ -131,7 +131,7 @@ function fb_readAll(_path, _data, _processAll) {
 			console.log(dbData)
 			var dbKeys = Object.keys(dbData)
 
-			_processAll(_data, snapshot, dbKeys) //admin process all declared in admin_manager.js
+			_processAll(_data, snapshot, dbKeys) //admin processall declared in admin_manager.js
 		}
 	}
 
@@ -148,7 +148,7 @@ function fb_readAll(_path, _data, _processAll) {
 // Input:  path & key of record to read and where to save it
 // Return:  
 /*****************************************************/
-function fb_readRec(_path, _key, _data, _processData, _dataType) {	
+function fb_readRec(_path, _key, _data, _processData) {	
     console.log('fb_readRec: path= ' + _path + '  key= ' + _key);
 
 	readStatus = "waiting"
@@ -159,7 +159,7 @@ function fb_readRec(_path, _key, _data, _processData, _dataType) {
 		console.log(dbData)
 		if (dbData == null) {
 			readStatus = "no record"
-			fb_processUserDetails(dbData)
+			_processData(dbData)
 		}
 		else {
 			readStatus = "ok"

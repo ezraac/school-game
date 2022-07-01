@@ -61,7 +61,7 @@ function reg_regDetailsEntered() {
 
   // Only write record to DB if all the fom's input passed html validation
   if (document.getElementById('f_reg').checkValidity()) {
-    writeRec(DBPATH, userDetails.uid, userDetails); //<=======
+    fb_writeRec(DBPATH, userDetails.uid, userDetails); //<=======
     document.getElementById("username").innerHTML = `Username: ${userDetails.username}`;
     document.getElementById("landingPage").style.display = "block";
     document.getElementById("registrationPage").style.display = "none";

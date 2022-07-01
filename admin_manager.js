@@ -95,7 +95,7 @@ function ad_admin() {
     
      HTML_updateAdminPage("ad_PTB")
     // ENSURE THE READ FUNCTION NAME & THE PATH NAME ARE CORRECT           //<=======
-    fb_readAll(DBPATH, "", ad_processBBReadAll);                                   //<=======
+    fb_readAll(DBPATH, "", ad_processPTBReadAll);                                   //<=======
   }
   
   /**************************************************************/
@@ -159,7 +159,7 @@ function ad_admin() {
   //         NOTE: this is the raw data, EG snapshot, NOT snapshot.val()
   // Return:
   /**************************************************************/
-  function ad_processBBReadAll(_result, _dbRec) {
+  function ad_processPTBReadAll(_result, _dbRec) {
     console.log('ad_processBBReadAll: ', 'result = ' + _result);
   
     var childKey;
@@ -177,8 +177,7 @@ function ad_admin() {
         //  MATCH YOUR FIREBASE RECORDS FOR THE PATH                       //<=======
         ad_adminArray.push({     
           uid:  childKey,
-          hits: childData.hits,
-          time: childData.time
+          highscore: childData.highscore
         });
       });
   
@@ -211,7 +210,7 @@ function ad_admin() {
       email:        'b',
       // Left photoURL out - its so long the table will be too wide for screen
       //photoURL:   'b', 
-      gameName:     'b',
+      username:     'b',
       phone:        'n',
       age:          'n',
       sex:          'a',
