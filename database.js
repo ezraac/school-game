@@ -12,9 +12,10 @@ var userDetails = {
   email:    '',
   name:     '',
   photoURL: '',
+  age:      '',
   sex:      '',
   PTB_TimeRec:'',
-  username: '',
+  gameName: '',
   TTT_Wins: '',
   TTT_Losses:'',
 };

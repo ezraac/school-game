@@ -51,9 +51,10 @@ function reg_regDetailsEntered() {
   // Save player1's details from the form into your details object
   //  ENSURE THE OBJECT NAME THE PROGRAM SAVES TO IS CORRECT; 
   //    its currently details                                           //<======= 
-  userDetails.username     =        reg_getFormItemValue("f_reg", 0);       //<=======
+  userDetails.gameName     =        reg_getFormItemValue("f_reg", 0);       //<=======
   userDetails.phone        = Number(reg_getFormItemValue("f_reg", 1));      //<=======
   userDetails.sex          =        reg_getFormItemValue("f_reg", 2);
+  userDetails.age          = Number(reg_getFormItemValue("f_reg", 3))
   
   console.log("reg_regDetailsEntered: form passed html validation - " +
             document.getElementById('f_reg').checkValidity());
@@ -62,7 +63,7 @@ function reg_regDetailsEntered() {
   // Only write record to DB if all the fom's input passed html validation
   if (document.getElementById('f_reg').checkValidity()) {
     fb_writeRec(DBPATH, userDetails.uid, userDetails); //<=======
-    document.getElementById("username").innerHTML = `Username: ${userDetails.username}`;
+    document.getElementById("username").innerHTML = `Username: ${userDetails.gameName}`;
     document.getElementById("landingPage").style.display = "block";
     document.getElementById("registrationPage").style.display = "none";
   }

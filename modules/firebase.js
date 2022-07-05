@@ -131,7 +131,8 @@ function fb_readAll(_path, _data, _processAll) {
 			console.log(dbData)
 			var dbKeys = Object.keys(dbData)
 
-			_processAll(_data, snapshot, dbKeys) //admin processall declared in admin_manager.js
+			//_processall in parameter
+			_processAll(_data, snapshot, dbKeys)
 		}
 	}
 

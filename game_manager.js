@@ -16,6 +16,8 @@ function enterGame(chosenGame) {
 	let element = document.getElementById("game_canvasDiv");
 	resizeCanvas(element.offsetWidth, element.offsetHeight);
     whatGame = chosenGame;
+
+	
 }
 
 
@@ -95,5 +97,5 @@ function gameStart() {
 
 //next second - called by interval
 function nextSecond() {
-	time++;
+	PTB_time++;
 }
