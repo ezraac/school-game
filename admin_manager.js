@@ -106,7 +106,7 @@ function ad_admin() {
   //         NOTE: this is the raw data, EG snapshot, NOT snapshot.val()
   // Return:
   /**************************************************************/
-  function ad_processUSERReadAll(_data, _dbRec) {
+  function ad_processUSERReadAll(_result, _dbRec) {
     console.log('ad_processUSERReadAll: ' + _dbRec);
   
     var childKey;
@@ -166,8 +166,8 @@ function ad_admin() {
     var childData;
     var ad_adminArray = [];
   
-    // Note: if read was successful, 1st input parameter must = "OK"       //<=======
-    if (_result == 'OK') {
+    // Note: if read was successful, 1st input parameter must = "ok"       //<=======
+    if (_result == 'ok') {
       _dbRec.forEach(function(childSnapshot) {
         childKey = childSnapshot.key;
         childData = childSnapshot.val();
@@ -177,6 +177,7 @@ function ad_admin() {
         // ENSURE THE FEILDS YOU PUSH INTO THE ARRAY OF OBJECTS            //<=======
         //  MATCH YOUR FIREBASE RECORDS FOR THE PATH                       //<=======
         ad_adminArray.push({
+          name: childData.name,
           PTB_TimeRec: childData.PTB_TimeRec,
           TTT_Losses: childData.TTT_Losses,
           TTT_Wins: childData.TTT_Wins,
@@ -189,10 +190,10 @@ function ad_admin() {
       //  7 = COLUMMN NUMBER WHICH CONTAINS THE DATABASE KEY.              //<=======
       //  8 = DATABASE PATH THE RECORDS WERE READ FROM.                    //<=======
       ad_displayAll("t_userData", ad_adminArray, true, "", "", "", 
-                    7, DBPATH);                                                //<=======
+                    5, DBPATH);                                                //<=======
     } else if (_result == 'n/a') {
       ad_displayAll("t_userData", ad_adminArray, true, "", "", "", 
-                    7, DBPATH);                                                //<=======
+                    5, DBPATH);                                                //<=======
     }
   }
   

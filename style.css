@@ -19,7 +19,7 @@ canvas {
 }
 
 #landingPage {
-	display: block;
+	display: none;
 	height: 100vh;
 }
 
@@ -32,7 +32,9 @@ canvas {
 	height: 15vh;
 }
 
-/*landing page css*/
+/*------------------------------------------------------------*
+  LANDING page styling
+/*------------------------------------------------------------*/
 #lP_oneThird {
 	height: 80vh;
   border-radius: 20px;
@@ -94,8 +96,6 @@ canvas {
   color: white;
   border-radius: 20px;
 }
-
-/*reg manager*/
 
 /*------------------------------------------------------------*
   REGISTRATION page styling

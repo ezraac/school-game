@@ -14,10 +14,10 @@ var userDetails = {
   photoURL: '',
   age:      '',
   sex:      '',
-  PTB_TimeRec:'',
+  PTB_TimeRec:0,
   gameName: '',
-  TTT_Wins: '',
-  TTT_Losses:'',
+  TTT_Wins: 0,
+  TTT_Losses:0,
 };
 
 var permissions = {

@@ -16,8 +16,7 @@ function enterGame(chosenGame) {
 	let element = document.getElementById("game_canvasDiv");
 	resizeCanvas(element.offsetWidth, element.offsetHeight);
     whatGame = chosenGame;
-
-	
+	HTML_editGameInfo(chosenGame);
 }
 
 
@@ -29,7 +28,7 @@ creates a canvas and sets the parent to div "game_canvasDiv" and positions it ov
 */
 function setup() {
 	let element = document.getElementById("game_canvasDiv")
-	cnv = createCanvas(element.offsetWidth, element.offsetHeight); //sets width and height to same as div
+	let cnv = createCanvas(element.offsetWidth, element.offsetHeight); //sets width and height to same as div
 	cnv.parent("game_canvasDiv");
 	cnv.position(element.offsetLeft, element.offsetTop);
 	cnv.mousePressed(pBMouseFunc) //mouse pressed over canvas func

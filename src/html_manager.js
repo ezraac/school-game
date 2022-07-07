@@ -9,6 +9,7 @@ function HTML_updateHTMLFromPerms() {
         document.getElementById("lP_Admin").style.display = "block";
     } else {
         document.getElementById("lP_Admin").remove()
+        
     }
 }
 
@@ -34,10 +35,29 @@ function HTML_updateAdminPage(page) {
 }
 
 function HTML_editGameInfo(game) {
+    console.log(userDetails.gameName)
     document.getElementById("username").innerHTML = "Username: " + userDetails.gameName;
     document.getElementById("hellouser").innerHTML = "Hello " + userDetails.name
 
     if (game == "PTB") {
-        document.getElementById("misses") = 
+        document.getElementById("misses").innerHTML = "Misses: 0";
+        document.getElementById("hitscore").innerHTML = "Score: 0";
+        document.getElementById("highscore").innerHTML = "Fastest Time: " + userDetails.PTB_TimeRec;
+        document.getElementById("game_timeDiv").style.display = "block";
+    } else if (game == "TTT") {
+        document.getElementById("hitscore").innerHTML = "Wins: " + userDetails.TTT_Wins;
+        document.getElementById("highscore").innerHTML = "Losses: " + userDetails.TTT_Losses;
+        document.getElementById("misses").innerHTML = "";
+        document.getElementById("game_timeDiv").style.display = "none";
     }
+}
+
+function HTML_loadPage() {
+    document.getElementById("landingPage").style.display = "block";
+    document.getElementById("loadingText").style.display = "none"
+}
+
+function HTML_returnPage() {
+    document.getElementById("landingPage").style.display = "block";
+    document.getElementById("gamePage").style.display = "none";
 }

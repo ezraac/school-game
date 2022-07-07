@@ -132,14 +132,14 @@ function fb_readAll(_path, _data, _processAll) {
 			var dbKeys = Object.keys(dbData)
 
 			//_processall in parameter
-			_processAll(_data, snapshot, dbKeys)
+			_processAll(readStatus, snapshot, _data, dbKeys)
 		}
 	}
 
 	function readErr(error) {
 		readData = "fail"
 		console.log(error)
-		_processAll(_data, dbData, dbKeys)
+		_processAll(readStatus, _data, dbData, dbKeys)
 	}
 }
 
@@ -184,12 +184,13 @@ function fb_processUserDetails(_dbData, _data) {
 		userDetails.name = _dbData.name
 		userDetails.email = _dbData.email
 		userDetails.photoURL = _dbData.photoURL
-		userDetails.username = _dbData.username
+		userDetails.gameName = _dbData.gameName
 		userDetails.sex = _dbData.sex
 		userDetails.PTB_TimeRec = _dbData.PTB_TimeRec
 		userDetails.TTT_Wins = _dbData.TTT_Wins
 		userDetails.TTT_Losses = _dbData.TTT_Losses
-
+		
+		HTML_loadPage();
 		console.log("finished processing data")
 	}
 }
@@ -203,7 +204,7 @@ function fb_processAuthRole(_dbData, _data) {
 	}
 }
 
-function fb_processAll(_data, _dbData, dbKeys) {
+function fb_processAll(_result, _dbData, _data, dbKeys) {
 	console.log(_data)
 	for (i=0; i < dbKeys.length; i++) {
 		let key = dbKeys[i]
