@@ -71,16 +71,20 @@ function balls() {
 }
 
 function pBMouseFunc() {
+	console.log("hi")
 	if (buttonfunc == "stop") {
 		ballhit = false;
+
 		for (var i = 0; i < ballarray.length; i++) { //iteration through balls
 			let hit = ballarray[i].distance();
+
 			if (hit == true) {
 				PTB_hitscore += 1;
 				ballhit = true;
 				document.getElementById("hitscore").innerHTML = "Score: " + PTB_hitscore;
 				console.log("mouseClicked: hit ball " + i);
 				ballarray.splice(i, 1); //deletes object in array
+
 				if (ballarray.length == 0) {
 					clearInterval(pBInterval); //stops timer
 					document.getElementById("game_startButton").style.backgroundColor = "rgb(24, 230, 72)";
@@ -90,8 +94,9 @@ function pBMouseFunc() {
 				}
 			}
 		}
+
 		if (ballhit == false) {
-			misses += 1;
+			PTB_misses += 1;
 			document.getElementById("misses").innerHTML = "Misses: " + misses;
 		} else {
 			ballhit = false;

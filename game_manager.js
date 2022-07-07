@@ -16,6 +16,7 @@ function enterGame(chosenGame) {
 	let element = document.getElementById("game_canvasDiv");
 	resizeCanvas(element.offsetWidth, element.offsetHeight);
     whatGame = chosenGame;
+
 	HTML_editGameInfo(chosenGame);
 }
 
@@ -46,7 +47,7 @@ any code inside it will be automatically executed continuously
 amount of "draws" per second controlled by frame rate (defaulted to 60). to be left alone.
 */
 function draw() {
-    if (whatGame == "popBall") {
+    if (whatGame == "PTB") {
         background(0);
         document.getElementById("gameTimer").innerHTML = "Time: " + PTB_time + "s"; //timer text
 		document.getElementById("misses").innerHTML = "Misses: " + PTB_misses;
@@ -71,7 +72,7 @@ function gameStart() {
 		PTB_hitscore = 0;
 		document.getElementById("hitscore").innerHTML = "Score: 0"
 		if (buttonfunc == "start") {
-            if (whatGame == "popBall") {
+            if (whatGame == "PTB") {
                 document.getElementById("game_startButton").style.backgroundColor = "red";
                 document.getElementById("game_startButton").innerHTML = "STOP"; //changes button to stop button
                 buttonfunc = "stop";
@@ -82,7 +83,7 @@ function gameStart() {
 	} else {
 		started = false
 		if (buttonfunc == "stop") {
-            if (whatGame == "popBall") {
+            if (whatGame == "PTB") {
 				document.getElementById("game_startButton").style.backgroundColor = "rgb(24, 230, 72)";
 				document.getElementById("game_startButton").innerHTML = "START"; //changes button to start button
 				buttonfunc = "start";
