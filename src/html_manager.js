@@ -3,6 +3,12 @@
 // written by Ezra 2022
 /*****************************************************/
 
+/*****************************************************/
+// HTML_updateHTMLFromPerms();
+// called by firebase.js in fb_processAuthRole();
+// shows or destroys the admin button according to userAuthRole
+// returns nothing
+/*****************************************************/
 function HTML_updateHTMLFromPerms() {
     console.log(permissions.userAuthRole)
     if (permissions.userAuthRole >= 2) {
@@ -13,6 +19,11 @@ function HTML_updateHTMLFromPerms() {
     }
 }
 
+/*****************************************************/
+// HTML_updateAdminPage(page);
+// called by admin_manager.js in ad_user(), ad_home(), and ad_PTB()
+// updates admin page tabs
+/*****************************************************/
 function HTML_updateAdminPage(page) {
     switch(page) {
         case "ad_user":
@@ -34,6 +45,11 @@ function HTML_updateAdminPage(page) {
     }
 }
 
+/*****************************************************/
+// HTML_editGameInfo(game);
+// called by game_manager.js in setup()
+// updates user info on side of game page
+/*****************************************************/
 function HTML_editGameInfo(game) {
     console.log(userDetails.gameName)
     document.getElementById("username").innerHTML = "Username: " + userDetails.gameName;
@@ -42,7 +58,7 @@ function HTML_editGameInfo(game) {
     if (game == "PTB") {
         document.getElementById("misses").innerHTML = "Misses: 0";
         document.getElementById("hitscore").innerHTML = "Score: 0";
-        document.getElementById("highscore").innerHTML = "Fastest Time: " + userDetails.PTB_TimeRec;
+        document.getElementById("highscore").innerHTML = `Fastest Time: ${userDetails.PTB_TimeRec}s`;
         document.getElementById("game_timeDiv").style.display = "block";
     } else if (game == "TTT") {
         document.getElementById("hitscore").innerHTML = "Wins: " + userDetails.TTT_Wins;
@@ -52,11 +68,21 @@ function HTML_editGameInfo(game) {
     }
 }
 
+/*****************************************************/
+// HTML_loadPage();
+// called in firease.js in fb_processUserDetails
+// removes loading text and shows landing page
+/*****************************************************/
 function HTML_loadPage() {
     document.getElementById("landingPage").style.display = "block";
     document.getElementById("loadingText").style.display = "none"
 }
 
+/*****************************************************/
+// HTML_returnPage();
+// called when user presses return button (in gamePage)
+// shows landing page and hides gamepage
+/*****************************************************/
 function HTML_returnPage() {
     document.getElementById("landingPage").style.display = "block";
     document.getElementById("gamePage").style.display = "none";

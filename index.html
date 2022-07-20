@@ -61,8 +61,8 @@
 		  <div class="w3-container w3-third" id="lP_oneThird">
 
         <!--game enter buttons-->
-			  <button class="w3-button w3-border w3-xlarge" onclick="enterGame('PTB')">Pop Ball Game</button>
-        <button class="w3-button w3-border w3-xlarge" onclick="enterGame('TTT')">Tic Tac Toe</button>
+			  <button class="w3-button w3-border w3-xlarge" onclick="game_enterGame('PTB')">Pop Ball Game</button>
+        <button class="w3-button w3-border w3-xlarge" onclick="game_enterGame('TTT')">Tic Tac Toe</button>
 		  </div>
 		  <div class="w3-container w3-twothird" id="lP_twoThird"></div>
 	  </div>
@@ -88,7 +88,7 @@
               <p id=gameTimer>Time: 0s</p>
             </div>
 
-            <button class="w3-button w3-border w3-xlarge" onclick="gameStart()" id="game_startButton">START</button>
+            <button class="w3-button w3-border w3-xlarge" onclick="game_gameStart()" id="game_startButton">START</button>
             <button class="w3-button w3-border w3-xlarge" onclick="HTML_returnPage()" id="game_loginButton">RETURN</button>
           </div>
         </div>

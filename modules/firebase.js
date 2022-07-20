@@ -33,7 +33,7 @@ var firebaseConfig = {
 }
 
 /*****************************************************/
-// fb_login(_dataRec)
+// fb_login(_dataRec, permissions)
 // Called by setup
 // Login to Firebase
 // Input:  where to save the google data
@@ -179,6 +179,8 @@ function fb_processUserDetails(_dbData, _data) {
 	console.log(_dbData)
 	if (_dbData == null) {
 		reg_showPage();
+		reg_popUp(userDetails);
+		document.getElementById("loadingText").style.display = "none";
 	} else {
 		userDetails.uid = _dbData.uid
 		userDetails.name = _dbData.name

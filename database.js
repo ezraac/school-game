@@ -1,4 +1,7 @@
-/*dbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdb*/
+/*****************************************************/
+// database.js
+// holds all database variables
+
 // database variables
 const DBPATH = "userInformation";
 const AUTHPATH = "authorizedUsers";
@@ -25,7 +28,7 @@ var permissions = {
 }
 
 var dbArray = [];
-/*dbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdb*/
+/*****************************************************/
 
 /*****************************************************/
 // login()

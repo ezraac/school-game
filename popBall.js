@@ -3,6 +3,7 @@
   Program for popBall game.
 *****************************************************/
 var PTB_time = 0;
+var PTB_ms = 0;
 var buttonfunc = "start";
 
 //ball variables
@@ -16,7 +17,13 @@ var PTB_hitscore = 0;
 var PTB_misses = 0;
 var ballhit;
 
-function balls() {
+/*****************************************************/
+// balls();
+// called in game_manager in game_gameStart();
+// creates 10 objects (balls) with functions
+// adds balls into ballarray
+/*****************************************************/
+function PTB_balls() {
 	for (var i = 0; i < BALLCOUNT; i++) { 
 		ballarray[i] = {
 			//positioning and speed set to random values
@@ -70,8 +77,11 @@ function balls() {
 	}
 }
 
-function pBMouseFunc() {
-	console.log("hi")
+/*****************************************************/
+// PTB_MouseFunc
+// called in game_manager.js in setup()
+/*****************************************************/
+function PTB_MouseFunc() {
 	if (buttonfunc == "stop") {
 		ballhit = false;
 
@@ -86,6 +96,13 @@ function pBMouseFunc() {
 				ballarray.splice(i, 1); //deletes object in array
 
 				if (ballarray.length == 0) {
+					let PTB_fullTime = parseFloat(`${PTB_time}.${PTB_ms}`);
+				
+					if (PTB_fullTime < userDetails.PTB_TimeRec || userDetails.PTB_TimeRec == 0) {
+						userDetails.PTB_TimeRec = PTB_fullTime;
+						document.getElementById("highscore").innerHTML = `Fastest Time: ${userDetails.PTB_TimeRec}s`
+						fb_writeRec(DBPATH, userDetails.uid, userDetails);
+					}
 					clearInterval(pBInterval); //stops timer
 					document.getElementById("game_startButton").style.backgroundColor = "rgb(24, 230, 72)";
 					document.getElementById("game_startButton").innerHTML = "START"; //changes button to start button

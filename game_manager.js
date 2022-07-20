@@ -5,11 +5,12 @@
 var whatGame;
 var pBInterval; //asigned an interval
 var started = false;
+var cnv
 
 //functions when enetering a game
 
 //popball
-function enterGame(chosenGame) {
+function game_enterGame(chosenGame) {
 	document.getElementById('landingPage').style.display = "none";
 	document.getElementById('gamePage').style.display = "block";
 
@@ -29,10 +30,9 @@ creates a canvas and sets the parent to div "game_canvasDiv" and positions it ov
 */
 function setup() {
 	let element = document.getElementById("game_canvasDiv")
-	let cnv = createCanvas(element.offsetWidth, element.offsetHeight); //sets width and height to same as div
+	cnv = createCanvas(element.offsetWidth, element.offsetHeight); //sets width and height to same as div
 	cnv.parent("game_canvasDiv");
 	cnv.position(element.offsetLeft, element.offsetTop);
-	cnv.mousePressed(pBMouseFunc) //mouse pressed over canvas func
 
 	//initialise firebase
 	//attempts login to google
@@ -49,7 +49,7 @@ amount of "draws" per second controlled by frame rate (defaulted to 60). to be l
 function draw() {
     if (whatGame == "PTB") {
         background(0);
-        document.getElementById("gameTimer").innerHTML = "Time: " + PTB_time + "s"; //timer text
+        document.getElementById("gameTimer").innerHTML = `Time: ${PTB_time}.${PTB_ms}s`; //timer text
 		document.getElementById("misses").innerHTML = "Misses: " + PTB_misses;
         for (var i = 0; i < ballarray.length; i++) {
 			//ball functions
@@ -64,20 +64,18 @@ function draw() {
 function for the start button
 changes button function when clicked
 */
-function gameStart() {
+function game_gameStart() {
+	cnv.mousePressed(PTB_MouseFunc) //mouse pressed over canvas func
 	if (started == false) {
-		started = true;
-		PTB_time = 0;
-		PTB_misses = 0;
-		PTB_hitscore = 0;
+		game_resetVars();
 		document.getElementById("hitscore").innerHTML = "Score: 0"
 		if (buttonfunc == "start") {
             if (whatGame == "PTB") {
                 document.getElementById("game_startButton").style.backgroundColor = "red";
                 document.getElementById("game_startButton").innerHTML = "STOP"; //changes button to stop button
                 buttonfunc = "stop";
-                balls() //creates balls
-                pBInterval = setInterval(nextSecond, 1000); //starts timer
+                PTB_balls() //creates balls called in popball.js
+                pBInterval = setInterval(game_nextMs, 100); //starts timer
             }
 		}
 	} else {
@@ -96,6 +94,19 @@ function gameStart() {
 }
 
 //next second - called by interval
-function nextSecond() {
-	PTB_time++;
+function game_nextMs() {
+	PTB_ms++;
+	
+	if (PTB_ms == 10) {
+		PTB_time++;
+		PTB_ms = 0;
+	}
+}
+
+function game_resetVars() {
+	started = true;
+	PTB_ms = 0;
+	PTB_time = 0;
+	PTB_misses = 0;
+	PTB_hitscore = 0;
 }
