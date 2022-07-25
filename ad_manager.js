@@ -107,14 +107,16 @@ function ad_admin() {
   // Return:
   /**************************************************************/
   function ad_processUSERReadAll(_result, _dbRec) {
-    console.log('ad_processUSERReadAll: ' + _dbRec);
+    console.log('ad_processUSERReadAll: ' + _result);
+    console.log(_dbRec)
+    
   
     var childKey;
     var childData;
     var ad_adminArray = [];
   
     // Note: if read was successful, 1st input parameter must = "OK"       //<=======
-    if (_dbRec != null) {                                        
+    if (_result = "ok") {                                        
       _dbRec.forEach(function(childSnapshot) {
         childKey = childSnapshot.key;
         childData = childSnapshot.val();

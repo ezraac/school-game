@@ -5,7 +5,7 @@
 var whatGame;
 var pBInterval; //asigned an interval
 var started = false;
-var cnv
+var cnv;
 
 //functions when enetering a game
 
