@@ -111,4 +111,5 @@ function game_resetVars() {
 	PTB_ms = 0;
 	PTB_time = 0;
 	PTB_misses = 0;
+	PTB_avgScore = 0;
 }

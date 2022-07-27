@@ -55,7 +55,6 @@ function fb_login(_dataRec, permissions) {
 		fb_readRec(AUTHPATH, _dataRec.uid, permissions, fb_processAuthRole); //reads user auth role
 		loginStatus = 'logged in';
 		console.log('fb_login: status = ' + loginStatus);
-		db_readRec();
     }
     else {
       // user NOT logged in, so redirect to Google login
@@ -189,6 +188,7 @@ function fb_processUserDetails(_dbData, _data) {
 		userDetails.gameName = _dbData.gameName
 		userDetails.sex = _dbData.sex
 		userDetails.PTB_TimeRec = _dbData.PTB_TimeRec
+		userDetails.PTB_avgScore = _dbData.PTB_avgScore
 		userDetails.TTT_Wins = _dbData.TTT_Wins
 		userDetails.TTT_Losses = _dbData.TTT_Losses
 		

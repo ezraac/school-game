@@ -4,6 +4,7 @@
 *****************************************************/
 var PTB_time = 0;
 var PTB_ms = 0;
+var PTB_AHS = 0;
 var buttonfunc = "start";
 
 //ball variables
@@ -89,20 +90,23 @@ function PTB_MouseFunc() {
 
 			if (hit == true) {
 				ballhit = true;
-				document.getElementById("hitscore").innerHTML = "Average Hit Score: " + userDetails.PTB_avgScore;
 				console.log("mouseClicked: hit ball " + i);
 				ballarray.splice(i, 1); //deletes object in array
 
 				if (ballarray.length == 0) {
-					let PTB_fullTime = parseFloat(`${PTB_time}.${PTB_ms}`);
-					let avgHitScore = PTB_calcScore(PTB_time, PTB_misses);
+					let PTB_fullTime = parseFloat(`${PTB_time}.${PTB_ms}`); //makes seconds and ms into a float
+					PTB_AHS = PTB_calcScore(PTB_fullTime, PTB_misses);
+					document.getElementById("hitscore").innerHTML = "Average Hit Score: " + PTB_AHS;
 
-					if (avgHitScore > userDetails.PTB_avgScore) {
-						userDetails.PTB_avgScore = avgHitScore;
+					//checking avghitscore and replacing if higher than int in data
+					if (PTB_AHS > userDetails.PTB_avgScore) {
+						userDetails.PTB_avgScore = PTB_AHS;
 						document.getElementById("hitscore").innerHTML = `Average Hit Score: ${userDetails.PTB_avgScore}`;
+						document.getElementById("highavgscore").innerHTML = `Highest AHS: ${userDetails.PTB_avgScore}`;
 						fb_writeRec(DBPATH, userDetails.uid, userDetails)
 					}
-				
+
+					
 					if (PTB_fullTime < userDetails.PTB_TimeRec || userDetails.PTB_TimeRec == 0) {
 						userDetails.PTB_TimeRec = PTB_fullTime;
 						document.getElementById("highscore").innerHTML = `Fastest Time: ${userDetails.PTB_TimeRec}s`
@@ -131,7 +135,7 @@ function PTB_calcScore(time, misses) {
 	if (misses == 0) {
 		misses = 1;
 	}
-	let avgHitScore = Math.round(((10/time)/misses) * 100);
+	let avgHitScore = Math.round(((10/time)/misses) * 1000);
 
 	return avgHitScore;
 }
