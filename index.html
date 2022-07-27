@@ -27,13 +27,13 @@
   <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script> 
   <!-- firebase end ********************************-->
 
-  <script defer src="database.js"></script>
+  <script defer src="data.js"></script>
   <script defer src="src/html_manager.js"></script>
-  <script defer src="admin_manager.js"></script>
+  <script defer src="modules/ad_manager.js"></script>
   <script defer src="reg_manager.js"></script>
-  <script defer src="modules/firebase.js"></script>
+  <script defer src="modules/fb_io.js"></script>
   <script defer src="game_manager.js"></script>
-  <script defer src="popBall.js"></script>
+  <script defer src="popTheBall.js"></script>
 </head>
   
 <!--***************************************************
@@ -80,8 +80,9 @@
 
           <!--game details for popBall-->
           <div class="w3-container" id="game_textDiv">
-            <p id="hitscore">Score: 0</p>
-            <p id="highscore">Highscore: 0</p>
+            <p id="hitscore">Average Hit Score: 0</p>
+            <p id="highavgscore">Highest AHS: 0</p>
+            <p id="highscore">Fastest Time: 0</p>
             <p id="misses">Misses: 0</p>
             <p id="username">Username: Tommy1</p>
             <div class="w3-container" id="game_timeDiv">
@@ -105,7 +106,7 @@
 			REGISTRATION PAGE 
   ********************************************************************************-->
   <section id="registrationPage">
-    <div class="w3-container w3-col s8 m6 l3 w3-small">
+    <div class="w3-container w3-col s8 m6 l10 w3-small">
       <form id="f_reg" onsubmit="return false;" class="w3-container w3-card-4 transparentBG">
         <h1 class="w3-center headFont">Register</h1>
 
@@ -143,7 +144,7 @@
 
         <div class="w3-row w3-section">
           <div class="w3-col" style="width: 50px">
-            <img src="images/noun_Gender Neutral_14064.png" 
+            <img src="images/noun_Gender Neutral.png" 
                  alt="Gender symbol" width="40" height="30"></div>
           <div class="w3-col m3">
             <select id="gender" style="height: 35px;">
@@ -155,7 +156,7 @@
           </div>
           <div class="w3-col m1">.</div>
           <div class="w3-col" style="width: 50px">
-            <img src="images/noun_age_2941875.png" 
+            <img src="images/noun_age.png" 
                  alt="age" width="40" height="40"></div>
           <div class="w3-rest">
             <input class="w3-input w3-border" min="16" required name="age" 

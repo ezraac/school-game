@@ -181,6 +181,7 @@ function ad_admin() {
         ad_adminArray.push({
           name: childData.name,
           PTB_TimeRec: childData.PTB_TimeRec,
+		  PTB_avgScore: childData.avgScore,
           TTT_Losses: childData.TTT_Losses,
           TTT_Wins: childData.TTT_Wins,
           uid:  childKey,
@@ -192,10 +193,10 @@ function ad_admin() {
       //  7 = COLUMMN NUMBER WHICH CONTAINS THE DATABASE KEY.              //<=======
       //  8 = DATABASE PATH THE RECORDS WERE READ FROM.                    //<=======
       ad_displayAll("t_userData", ad_adminArray, true, "", "", "", 
-                    5, DBPATH);                                                //<=======
+                    6, DBPATH);                                                //<=======
     } else if (_result == 'n/a') {
       ad_displayAll("t_userData", ad_adminArray, true, "", "", "", 
-                    5, DBPATH);                                                //<=======
+                    6, DBPATH);                                                //<=======
     }
   }
   
@@ -230,8 +231,8 @@ function ad_admin() {
     //   BBLevel:      'n',
     //   BBFails:      'n',
     //   BBHits:       'n',
-    //   BBMiss:       'n',
-      PTB_Time:       'n',
+	  PTB_avgScore:	'n',
+      PTB_Time:		'n',
     
       TTWin:        'a',
       TTTLoss:      'n',

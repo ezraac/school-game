@@ -57,7 +57,8 @@ function HTML_editGameInfo(game) {
 
     if (game == "PTB") {
         document.getElementById("misses").innerHTML = "Misses: 0";
-        document.getElementById("hitscore").innerHTML = "Score: 0";
+        document.getElementById("hitscore").innerHTML = "Average Hit Score: 0";
+        document.getElementById("highavgscore").innerHTML = `Highest AHS: ${userDetails.PTB_avgScore}`;
         document.getElementById("highscore").innerHTML = `Fastest Time: ${userDetails.PTB_TimeRec}s`;
         document.getElementById("game_timeDiv").style.display = "block";
     } else if (game == "TTT") {

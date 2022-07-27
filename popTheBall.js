@@ -13,7 +13,6 @@ const BALLSPEED = [5, 4, 3, 2, -2, -3, -4, -5]; //8 different velocities
 var ballarray = [];
 
 //other variables - called in game_manager.js
-var PTB_hitscore = 0;
 var PTB_misses = 0;
 var ballhit;
 
@@ -89,20 +88,27 @@ function PTB_MouseFunc() {
 			let hit = ballarray[i].distance();
 
 			if (hit == true) {
-				PTB_hitscore += 1;
 				ballhit = true;
-				document.getElementById("hitscore").innerHTML = "Score: " + PTB_hitscore;
+				document.getElementById("hitscore").innerHTML = "Average Hit Score: " + userDetails.PTB_avgScore;
 				console.log("mouseClicked: hit ball " + i);
 				ballarray.splice(i, 1); //deletes object in array
 
 				if (ballarray.length == 0) {
 					let PTB_fullTime = parseFloat(`${PTB_time}.${PTB_ms}`);
+					let avgHitScore = PTB_calcScore(PTB_time, PTB_misses);
+
+					if (avgHitScore > userDetails.PTB_avgScore) {
+						userDetails.PTB_avgScore = avgHitScore;
+						document.getElementById("hitscore").innerHTML = `Average Hit Score: ${userDetails.PTB_avgScore}`;
+						fb_writeRec(DBPATH, userDetails.uid, userDetails)
+					}
 				
 					if (PTB_fullTime < userDetails.PTB_TimeRec || userDetails.PTB_TimeRec == 0) {
 						userDetails.PTB_TimeRec = PTB_fullTime;
 						document.getElementById("highscore").innerHTML = `Fastest Time: ${userDetails.PTB_TimeRec}s`
 						fb_writeRec(DBPATH, userDetails.uid, userDetails);
 					}
+
 					clearInterval(pBInterval); //stops timer
 					document.getElementById("game_startButton").style.backgroundColor = "rgb(24, 230, 72)";
 					document.getElementById("game_startButton").innerHTML = "START"; //changes button to start button
@@ -119,6 +125,15 @@ function PTB_MouseFunc() {
 			ballhit = false;
 		}
 	}
+}
+
+function PTB_calcScore(time, misses) {
+	if (misses == 0) {
+		misses = 1;
+	}
+	let avgHitScore = Math.round(((10/time)/misses) * 100);
+
+	return avgHitScore;
 }
 /*****************************************************/
 //   END OF CODE

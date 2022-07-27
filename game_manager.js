@@ -68,7 +68,7 @@ function game_gameStart() {
 	cnv.mousePressed(PTB_MouseFunc) //mouse pressed over canvas func
 	if (started == false) {
 		game_resetVars();
-		document.getElementById("hitscore").innerHTML = "Score: 0"
+		document.getElementById("hitscore").innerHTML = "Average Hit Score: 0"
 		if (buttonfunc == "start") {
             if (whatGame == "PTB") {
                 document.getElementById("game_startButton").style.backgroundColor = "red";
@@ -103,10 +103,12 @@ function game_nextMs() {
 	}
 }
 
+//game_resetVars
+//called by game_gameStart
+//resets vars on the side ui in game page
 function game_resetVars() {
 	started = true;
 	PTB_ms = 0;
 	PTB_time = 0;
 	PTB_misses = 0;
-	PTB_hitscore = 0;
 }
